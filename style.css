@@ -130,7 +130,8 @@ main {
 /*! FIRST SECTION */
 
 #underlined-text {
-  background-image: url(https://res.cloudinary.com/dgrhbsilh/image/upload/v1697732987/Jadoo-travel/yumvnsmereskikoq7ej9.png);
+  /*background-image: url(https://res.cloudinary.com/dgrhbsilh/image/upload/v1697732987/Jadoo-travel/yumvnsmereskikoq7ej9.png);*/
+  background-image: url('assets/img/green-line.png');
   background-size: 100%;
   background-repeat: no-repeat;
   background-position-y: 75px;
@@ -289,6 +290,10 @@ h2 {
   /* z-index: -1; */
 }
 
+.service-icon img{
+  width: 70px;
+}
+
 #salmon-img {
   position: absolute;
   z-index: -2;
@@ -341,11 +346,32 @@ h2 {
 .first-line-destination {
   display: flex;
   justify-content: space-between;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.first-line-destination h2{
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.first-line-destination p{
+  font-size: 16px;
+  font-weight: 600;
 }
 
 .second-line-destination {
   display: flex;
   gap: 5px;
+  margin: 0 auto;
+  text-align: center;
+
+}
+
+.second-line-destination p{
+  font-size: 14px;
+  text-align: center;
+  align-items: center;
 }
 
 .destination-image {
@@ -566,7 +592,10 @@ footer {
 
 .footer-01 {
   flex-direction: column;
-  max-width: 60%;
+  max-width: 100%;
+  margin: 0 auto;
+  align-items: center;
+  align-content: center;
 }
 
 .footer-02 {
@@ -833,9 +862,32 @@ button:hover {
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  margin-top: 4px;
   gap: 20px; /* Espacio entre los botones */
 }
 .download-buttons a {
   display: inline-block;
 }
  
+.cognicise-logo img{
+  width: 150px;
+}
+
+.mockup-img{
+  width: 350px;
+}
+
+.plan-note{
+  font-style: italic;
+}
+
+
+.step-icon {
+  position: relative;
+  /* top: 30px; */
+  /* z-index: -1; */
+}
+
+.step-icon img{
+  width: 70px;
+}

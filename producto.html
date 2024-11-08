@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cognicise | Cuidado cognitivo y vínculo familiar en una app</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/img/favicon-cognicise.png" type="image/x-icon">
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon-cognicise.png" />
+		<link rel="icon" href="assets/img/favicon-cognicise.png" type="image/x-icon">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Volkhov:wght@400;700&display=swap" rel="stylesheet">
+    
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <style>
+        /* Configuración de Tailwind */
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#00C29D',
+                        secondary: '#181E4B',
+                        accent: '#5E6282'
+                    },
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif'],
+                        volkhov: ['Volkhov', 'serif']
+                    }
+                }
+            }
+        }
+    </style>
+</head>
+<body class="font-poppins">
+<!-- Header -->
+<header class="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-sm z-50 border-b border-gray-100">
+    <div class="container mx-auto px-6">
+        <nav class="flex items-center justify-between h-16 md:h-20">
+            <!-- Logo -->
+            <a href="/" class="relative z-10">
+                <img 
+                    src="assets/img/cognicise-logo.png" 
+                    alt="Cognicise" 
+                    class="h-8 md:h-10 object-contain"
+                />
+            </a>
+
+            <!-- Desktop Navigation -->
+            <div class="hidden lg:flex items-center space-x-8">
+                <a href="index.html" class="text-secondary hover:text-[#00C29D] transition-colors">¿Qué es Cognicise?</a>
+                <a href="producto.html" class="text-secondary hover:text-[#00C29D] transition-colors">Producto</a>
+                <a href="equipo.html" class="text-secondary hover:text-[#00C29D] transition-colors">Equipo</a>
+                <a href="#verkami" class="bg-[#00C29D] text-white px-6 py-2 rounded-lg hover:bg-[#00C29D]/90 transition-all transform hover:scale-105">
+                    Apoyar Proyecto
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button 
+                type="button" 
+                id="menu-toggle"
+                class="lg:hidden relative z-[60] p-2 text-secondary hover:text-[#00C29D] transition-colors"
+                aria-label="Menu"
+            >
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+        </nav>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div 
+        id="mobile-menu" 
+        class="fixed inset-0 w-full min-h-screen bg-white -translate-x-full transition-transform duration-300 lg:hidden z-50"
+        style="min-height: 100vh; background: white !important;"
+    >
+        <div class="relative h-full">
+            <!-- Mobile Menu Header -->
+            <div class="flex items-center justify-between p-6">
+                <img 
+                    src="assets/img/cognicise-logo.png" 
+                    alt="Cognicise" 
+                    class="h-8"
+                />
+                <button 
+                    type="button"
+                    class="p-2 text-secondary hover:text-[#00C29D] transition-colors"
+                    onclick="document.getElementById('mobile-menu').classList.add('-translate-x-full')"
+                    aria-label="Cerrar menu"
+                >
+                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Menu Links -->
+            <nav class="px-6 py-8">
+                <div class="flex flex-col space-y-6">
+                    <a href="/" class="text-xl font-medium text-secondary hover:text-[#00C29D] transition-colors">
+                        ¿Qué es Cognicise?
+                    </a>
+                    <a href="/producto.html" class="text-xl font-medium text-secondary hover:text-[#00C29D] transition-colors">
+                        Producto
+                    </a>
+                    <a href="/equipo.html" class="text-xl font-medium text-secondary hover:text-[#00C29D] transition-colors">
+                        Equipo
+                    </a>
+                </div>
+
+                <!-- CTA Mobile -->
+                <div class="mt-8">
+                    <a 
+                        href="#verkami" 
+                        class="block w-full bg-[#00C29D] text-white px-6 py-3 rounded-lg text-center font-medium hover:bg-[#00C29D]/90 transition-all"
+                    >
+                        Apoyar Proyecto
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const menuButton = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  let isMenuOpen = false;
+
+  function toggleMenu() {
+      isMenuOpen = !isMenuOpen;
+      
+      // Usar classList para toggle de la clase de transformación
+      mobileMenu.classList.toggle('-translate-x-full');
+      
+      // Togglear scroll del body
+      document.body.style.overflow = isMenuOpen ? 'hidden' : '';
+      
+      // Actualizar aria-expanded
+      menuButton.setAttribute('aria-expanded', isMenuOpen);
+  }
+
+  // Event listener para el botón de menú
+  menuButton.addEventListener('click', toggleMenu);
+
+  // Event listeners para los enlaces del menú móvil
+  const mobileLinks = mobileMenu.getElementsByTagName('a');
+  Array.from(mobileLinks).forEach(link => {
+      link.addEventListener('click', () => {
+          toggleMenu();
+      });
+  });
+
+  // Cerrar menú al redimensionar la ventana si está en viewport desktop
+  window.addEventListener('resize', () => {
+      if (window.innerWidth >= 1024 && isMenuOpen) {
+          toggleMenu();
+      }
+  });
+});
+</script>
+
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <span class="inline-block text-[#00C29D] font-semibold tracking-wide uppercase bg-[#00C29D]/10 px-4 py-2 rounded-full mb-6">
+                    REVOLUCIONANDO EL CUIDADO COGNITIVO
+                </span>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-secondary mb-8">
+                    Tecnología que une el cuidado cognitivo con el vínculo familiar
+                </h1>
+                <p class="text-xl text-accent mb-12 max-w-3xl mx-auto leading-relaxed">
+                    En un mundo donde el deterioro cognitivo afecta a millones de familias, Cognicise emerge como una solución integral que combina ejercitación personalizada, seguimiento inteligente y conexión familiar efectiva.
+                </p>
+
+                <!-- Selector de Vista -->
+                <div class="inline-flex p-1 bg-gray-100 rounded-xl">
+                    <button class="tab-btn active px-8 py-3 rounded-lg text-base font-medium transition-all" data-tab="paciente">
+                        Para Pacientes
+                    </button>
+                    <button class="tab-btn px-8 py-3 rounded-lg text-base font-medium transition-all" data-tab="familiar">
+                        Para Familiares
+                    </button>
+                </div>
+            </div>
+
+            <!-- Vista Principal / Mockup -->
+            <div class="mt-16 relative max-w-5xl mx-auto">
+                <div id="paciente-view" class="tab-content">
+                    <img 
+                        src="assets/img/mockup1.png" 
+                        alt="Interfaz Paciente Cognicise" 
+                        class="w-full max-w-4xl mx-auto rounded-2xl shadow-xl"
+                    />
+                    <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-2xl p-4 shadow-lg">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 bg-[#00C29D]/10 rounded-xl flex items-center justify-center">
+                                <svg class="w-6 h-6 text-[#00C29D]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <span class="text-sm font-medium text-gray-500">Interfaz Adaptativa</span>
+                                <div class="text-xl font-bold text-[#00C29D]">Diseño Intuitivo</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="familiar-view" class="tab-content hidden">
+                    <img 
+                        src="assets/img/mockup2.png" 
+                        alt="Interfaz Familiar Cognicise" 
+                        class="w-full max-w-4xl mx-auto rounded-2xl shadow-xl"
+                    />
+                    <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-2xl p-4 shadow-lg">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 bg-[#00C29D]/10 rounded-xl flex items-center justify-center">
+                                <svg class="w-6 h-6 text-[#00C29D]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <span class="text-sm font-medium text-gray-500">Control Total</span>
+                                <div class="text-xl font-bold text-[#00C29D]">Monitorización</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Características Principales -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <!-- Ejercitación Cognitiva -->
+            <div class="grid md:grid-cols-2 gap-16 items-center mb-32">
+                <div class="order-2 md:order-1">
+                    <div class="inline-flex items-center rounded-full px-4 py-2 bg-[#00C29D]/10 text-[#00C29D] text-sm font-medium mb-6">
+                        EJERCITACIÓN PERSONALIZADA
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-secondary mb-6 leading-tight">
+                        Ejercicios cognitivos que evolucionan contigo
+                    </h2>
+                    <p class="text-lg text-accent mb-8 leading-relaxed">
+                        Nuestro sistema de inteligencia artificial analiza el rendimiento en tiempo real para ofrecer una experiencia de ejercitación única para cada usuario. Los ejercicios se adaptan automáticamente en dificultad y tipo, garantizando una estimulación cognitiva óptima y manteniendo la motivación.
+                    </p>
+                    <div class="grid grid-cols-2 gap-8 mb-8">
+                        <div class="bg-white rounded-xl p-6 shadow-lg">
+                            <div class="text-3xl font-bold text-[#00C29D] mb-2">100+</div>
+                            <p class="text-accent">Ejercicios únicos diseñados por expertos en neuropsicología</p>
+                        </div>
+                        <div class="bg-white rounded-xl p-6 shadow-lg">
+                            <div class="text-3xl font-bold text-[#00C29D] mb-2">4</div>
+                            <p class="text-accent">Categorías cognitivas principales: Memoria, Atención, Cálculo y Percepción</p>
+                        </div>
+                    </div>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3">
+                            <div class="w-6 h-6 rounded-full bg-[#00C29D]/10 flex items-center justify-center flex-shrink-0">
+                                <svg class="w-4 h-4 text-[#00C29D]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </div>
+                            <span class="text-accent text-lg">Adaptación automática de dificultad</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <div class="w-6 h-6 rounded-full bg-[#00C29D]/10 flex items-center justify-center flex-shrink-0">
+                                <svg class="w-4 h-4 text-[#00C29D]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </div>
+                            <span class="text-accent text-lg">Retroalimentación instantánea</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="order-1 md:order-2 relative">
+                    <img 
+                        src="assets/img/mockup3.png" 
+                        alt="Ejercicios Cognitivos" 
+                        class="w-full max-w-lg mx-auto rounded-2xl shadow-xl"
+                    />
+                    <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-lg">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-[#00C29D]/10 rounded-lg flex items-center justify-center">
+                                <svg class="w-5 h-5 text-[#00C29D]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                </svg>
+                            </div>
+                            <span class="text-sm font-medium text-secondary">Ejercicios dinámicos y entretenidos</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Seguimiento Inteligente -->
+            <div class="grid md:grid-cols-2 gap-16 items-center mb-32">
+                <div>
+                    <img 
+                        src="assets/img/mockup4.png" 
+                        alt="Seguimiento y Análisis" 
+                        class="w-full max-w-lg mx-auto rounded-2xl shadow-xl"
+                    />
+                    <div class="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-lg">
+                        <div class="text-2xl font-bold text-[#00C29D] mb-1">65%</div>
+                        <p class="text-sm text-accent">Mejora promedio en retención</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="inline-flex items-center rounded-full px-4 py-2 bg-[#00C29D]/10 text-[#00C29D] text-sm font-medium mb-6">
+                        MONITORIZACIÓN AVANZADA
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-secondary mb-6 leading-tight">
+                        Seguimiento detallado del progreso cognitivo
+                    </h2>
+                    <p class="text-lg text-accent mb-8 leading-relaxed">
+                        Visualiza y comprende la evolución cognitiva con nuestro sistema de análisis inteligente. Obtén insights valiosos sobre el rendimiento, patrones de mejora y áreas de oportunidad, permitiendo ajustes precisos en el plan de ejercitación.
+                    </p>
+                    <div class="bg-white rounded-xl p-6 shadow-lg mb-8">
+                        <h3 class="font-semibold text-secondary mb-4">Análisis Comprehensivo</h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <div class="text-2xl font-bold text-[#00C29D] mb-1">Real-time</div>
+                                <p class="text-sm text-accent">Monitorización continua</p>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-bold text-[#00C29D] mb-1">IA</div>
+                                <p class="text-sm text-accent">Análisis predictivo</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Conexión Familiar -->
+            <div class="grid md:grid-cols-2 gap-16 items-center mb-32">
+                <div class="order-2 md:order-1">
+                    <div class="inline-flex items-center rounded-full px-4 py-2 bg-[#00C29D]/10 text-[#00C29D] text-sm font-medium mb-6">
+                        VÍNCULO FAMILIAR
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-secondary mb-6 leading-tight">
+                        Fortaleciendo lazos familiares a través de la tecnología
+                    </h2>
+                    <p class="text-lg text-accent mb-8 leading-relaxed">
+                        Cognicise va más allá de la ejercitación cognitiva: crea un puente de conexión constante entre el usuario y sus seres queridos. Permite a los familiares participar activamente en el proceso de cuidado, manteniéndose informados y conectados en todo momento.
+                    </p>
+                    
+                    <div class="space-y-6 mb-8">
+                        <div class="bg-white rounded-xl p-6 shadow-lg">
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-xl bg-[#00C29D]/10 flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-[#00C29D]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-secondary mb-2">Comunicación Efectiva</h3>
+                                    <p class="text-accent">Sistema de mensajería integrada y llamadas rápidas para mantener el contacto constante con la familia.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-xl p-6 shadow-lg">
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-xl bg-[#00C29D]/10 flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-[#00C29D]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-secondary mb-2">Gestión Remota</h3>
+                                    <p class="text-accent">Configuración de recordatorios y actividades desde cualquier lugar, manteniendo la rutina organizada.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-4 p-4 bg-[#00C29D]/5 rounded-xl">
+                        <div class="text-2xl font-bold text-[#00C29D]">85%</div>
+                        <p class="text-accent">de los familiares reportan mayor tranquilidad y conexión con sus seres queridos</p>
+                    </div>
+                </div>
+                <div class="order-1 md:order-2 relative">
+                    <img 
+                        src="assets/img/mockup5.png" 
+                        alt="Conexión Familiar" 
+                        class="w-full max-w-lg mx-auto rounded-2xl shadow-xl"
+                    />
+                    <div class="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-lg">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-[#00C29D]/10 rounded-lg flex items-center justify-center">
+                                <svg class="w-5 h-5 text-[#00C29D]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                                </svg>
+                            </div>
+                            <span class="text-sm font-medium text-secondary">Conexión continua</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Proceso de Implementación -->
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="inline-flex items-center rounded-full px-4 py-2 bg-[#00C29D]/10 text-[#00C29D] text-sm font-medium mb-6">
+                    COMIENZA HOY
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold text-secondary mb-6 leading-tight">
+                    Implementación sencilla en tres pasos
+                </h2>
+                <p class="text-lg text-accent mb-8 leading-relaxed">
+                    Hemos diseñado un proceso intuitivo para que puedas comenzar a utilizar Cognicise de inmediato. Sin complicaciones, sin configuraciones complejas.
+                </p>
+            </div>
+            <!-- Pasos de Implementación -->
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-20">
+                <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all">
+                    <div class="w-14 h-14 rounded-xl bg-[#00C29D]/10 flex items-center justify-center mb-6">
+                        <span class="text-2xl font-bold text-[#00C29D]">1</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-secondary mb-4">Configura el perfil</h3>
+                    <p class="text-lg text-accent leading-relaxed">
+                        Crea un perfil personalizado en minutos, adaptado a las necesidades específicas del usuario. Nuestro sistema te guiará en cada paso.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all">
+                    <div class="w-14 h-14 rounded-xl bg-[#00C29D]/10 flex items-center justify-center mb-6">
+                        <span class="text-2xl font-bold text-[#00C29D]">2</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-secondary mb-4">Conecta con la familia</h3>
+                    <p class="text-lg text-accent leading-relaxed">
+                        Invita a familiares y cuidadores a unirse a la red de apoyo. La conexión es inmediata y segura.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all">
+                    <div class="w-14 h-14 rounded-xl bg-[#00C29D]/10 flex items-center justify-center mb-6">
+                        <span class="text-2xl font-bold text-[#00C29D]">3</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-secondary mb-4">Comienza la ejercitación</h3>
+                    <p class="text-lg text-accent leading-relaxed">
+                        Inicia tu viaje de estimulación cognitiva con ejercicios adaptados a tu nivel y preferencias.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Métricas de Impacto -->
+            <div class="max-w-5xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden mb-20">
+                <div class="grid md:grid-cols-3">
+                    <div class="p-8 border-b md:border-b-0 md:border-r border-gray-100">
+                        <div class="text-4xl font-bold text-[#00C29D] mb-2">65%</div>
+                        <p class="text-lg text-accent">mejora en la retención de información a los 3 meses</p>
+                    </div>
+                    <div class="p-8 border-b md:border-b-0 md:border-r border-gray-100">
+                        <div class="text-4xl font-bold text-[#00C29D] mb-2">40%</div>
+                        <p class="text-lg text-accent">incremento en la autonomía del usuario</p>
+                    </div>
+                    <div class="p-8">
+                        <div class="text-4xl font-bold text-[#00C29D] mb-2">85%</div>
+                        <p class="text-lg text-accent">de satisfacción en usuarios y familiares</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="py-20 bg-gradient-to-br from-gray-900 to-[#00142D] text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-[#00C29D]/10"></div>
+        <div class="container mx-auto px-6 relative">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-4xl md:text-5xl font-bold mb-8">
+                    Únete a la revolución en el cuidado cognitivo
+                </h2>
+                <p class="text-xl text-gray-300 mb-12 leading-relaxed">
+                    Sé parte del cambio en la manera en que abordamos el deterioro cognitivo. Con Cognicise, cada ejercicio es un paso hacia una mejor calidad de vida, cada interacción fortalece lazos familiares, y cada día es una oportunidad para marcar la diferencia.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                    <a href="#verkami" class="inline-flex items-center justify-center bg-[#00C29D] text-white px-8 py-4 rounded-xl font-semibold hover:bg-[#00C29D]/90 transition-all transform hover:scale-105 text-lg">
+                        Apoyar el Proyecto
+                        <svg class="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                        </svg>
+                    </a>
+                    <a href="#planes" class="inline-flex items-center justify-center border-2 border-white text-white px-8 py-4 rounded-xl font-semibold hover:bg-white hover:text-gray-900 transition-all text-lg">
+                        Conoce los Planes
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Funcionalidad de tabs mejorada
+        function switchTab(tabName) {
+            const buttons = document.querySelectorAll('.tab-btn');
+            const contents = document.querySelectorAll('.tab-content');
+            
+            buttons.forEach(btn => {
+                if (btn.dataset.tab === tabName) {
+                    btn.classList.add('bg-[#00C29D]', 'text-white');
+                    btn.classList.remove('text-secondary');
+                } else {
+                    btn.classList.remove('bg-[#00C29D]', 'text-white');
+                    btn.classList.add('text-secondary');
+                }
+            });
+
+            contents.forEach(content => {
+                if (content.id === `${tabName}-view`) {
+                    content.classList.remove('hidden');
+                } else {
+                    content.classList.add('hidden');
+                }
+            });
+        }
+
+        // Event Listeners
+        document.querySelectorAll('.tab-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                switchTab(button.dataset.tab);
+            });
+        });
+    </script>
+</body>
+</html>

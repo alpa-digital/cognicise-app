@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cognicise | Cuidado cognitivo y vínculo familiar en una app</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/img/favicon-cognicise.png" type="image/x-icon">
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon-cognicise.png" />
+		<link rel="icon" href="assets/img/favicon-cognicise.png" type="image/x-icon">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Volkhov:wght@400;700&display=swap" rel="stylesheet">
+    
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <style>
+        /* Configuración de Tailwind */
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#00C29D',
+                        secondary: '#181E4B',
+                        accent: '#5E6282'
+                    },
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif'],
+                        volkhov: ['Volkhov', 'serif']
+                    }
+                }
+            }
+        }
+    </style>
+</head>
+<body class="font-poppins">
+<!-- Header -->
+<header class="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-sm z-50 border-b border-gray-100">
+    <div class="container mx-auto px-6">
+        <nav class="flex items-center justify-between h-16 md:h-20">
+            <!-- Logo -->
+            <a href="/" class="relative z-10">
+                <img 
+                    src="assets/img/cognicise-logo.png" 
+                    alt="Cognicise" 
+                    class="h-8 md:h-10 object-contain"
+                />
+            </a>
+
+            <!-- Desktop Navigation -->
+            <div class="hidden lg:flex items-center space-x-8">
+                <a href="index.html" class="text-secondary hover:text-[#00C29D] transition-colors">¿Qué es Cognicise?</a>
+                <a href="producto.html" class="text-secondary hover:text-[#00C29D] transition-colors">Producto</a>
+                <a href="equipo.html" class="text-secondary hover:text-[#00C29D] transition-colors">Equipo</a>
+                <a href="#verkami" class="bg-[#00C29D] text-white px-6 py-2 rounded-lg hover:bg-[#00C29D]/90 transition-all transform hover:scale-105">
+                    Apoyar Proyecto
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button 
+                type="button" 
+                id="menu-toggle"
+                class="lg:hidden relative z-[60] p-2 text-secondary hover:text-[#00C29D] transition-colors"
+                aria-label="Menu"
+            >
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+        </nav>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div 
+        id="mobile-menu" 
+        class="fixed inset-0 w-full min-h-screen bg-white -translate-x-full transition-transform duration-300 lg:hidden z-50"
+        style="min-height: 100vh; background: white !important;"
+    >
+        <div class="relative h-full">
+            <!-- Mobile Menu Header -->
+            <div class="flex items-center justify-between p-6">
+                <img 
+                    src="assets/img/cognicise-logo.png" 
+                    alt="Cognicise" 
+                    class="h-8"
+                />
+                <button 
+                    type="button"
+                    class="p-2 text-secondary hover:text-[#00C29D] transition-colors"
+                    onclick="document.getElementById('mobile-menu').classList.add('-translate-x-full')"
+                    aria-label="Cerrar menu"
+                >
+                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Menu Links -->
+            <nav class="px-6 py-8">
+                <div class="flex flex-col space-y-6">
+                    <a href="/" class="text-xl font-medium text-secondary hover:text-[#00C29D] transition-colors">
+                        ¿Qué es Cognicise?
+                    </a>
+                    <a href="/producto.html" class="text-xl font-medium text-secondary hover:text-[#00C29D] transition-colors">
+                        Producto
+                    </a>
+                    <a href="/equipo.html" class="text-xl font-medium text-secondary hover:text-[#00C29D] transition-colors">
+                        Equipo
+                    </a>
+                </div>
+
+                <!-- CTA Mobile -->
+                <div class="mt-8">
+                    <a 
+                        href="#verkami" 
+                        class="block w-full bg-[#00C29D] text-white px-6 py-3 rounded-lg text-center font-medium hover:bg-[#00C29D]/90 transition-all"
+                    >
+                        Apoyar Proyecto
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const menuButton = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  let isMenuOpen = false;
+
+  function toggleMenu() {
+      isMenuOpen = !isMenuOpen;
+      
+      // Usar classList para toggle de la clase de transformación
+      mobileMenu.classList.toggle('-translate-x-full');
+      
+      // Togglear scroll del body
+      document.body.style.overflow = isMenuOpen ? 'hidden' : '';
+      
+      // Actualizar aria-expanded
+      menuButton.setAttribute('aria-expanded', isMenuOpen);
+  }
+
+  // Event listener para el botón de menú
+  menuButton.addEventListener('click', toggleMenu);
+
+  // Event listeners para los enlaces del menú móvil
+  const mobileLinks = mobileMenu.getElementsByTagName('a');
+  Array.from(mobileLinks).forEach(link => {
+      link.addEventListener('click', () => {
+          toggleMenu();
+      });
+  });
+
+  // Cerrar menú al redimensionar la ventana si está en viewport desktop
+  window.addEventListener('resize', () => {
+      if (window.innerWidth >= 1024 && isMenuOpen) {
+          toggleMenu();
+      }
+  });
+});
+</script>
+
+<body class="bg-white">
+    <!-- Header desde index.html -->
+    <header class="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-sm z-50 border-b border-gray-100">
+        <!-- ... código del header ... -->
+    </header>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 relative overflow-hidden">
+        <div class="absolute inset-0 -z-10">
+            <div class="absolute right-0 top-0 w-[500px] h-[500px] bg-[#00C29D]/5 rounded-full blur-3xl"></div>
+            <div class="absolute left-20 bottom-20 w-[400px] h-[400px] bg-blue-500/5 rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="container mx-auto px-6">
+            <div class="max-w-3xl mx-auto text-center">
+                <span class="inline-block text-[#00C29D] font-semibold tracking-wide uppercase bg-[#00C29D]/10 px-4 py-2 rounded-full mb-6">
+                    NUESTRO EQUIPO
+                </span>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-secondary mb-8">
+                    Revolucionando el cuidado cognitivo desde dentro
+                </h1>
+                <p class="text-xl text-accent leading-relaxed">
+                    Un equipo apasionado por mejorar la vida de las personas a través de la tecnología y la innovación en el cuidado cognitivo.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fundador Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-16 items-center">
+                    <div>
+                        <div class="relative">
+                            <img 
+                                src="assets/img/curro.png" 
+                                alt="Curro Alé" 
+                                class="w-full max-w-md mx-auto rounded-2xl shadow-xl"
+                            />
+                            <div class="absolute -bottom-6 left-1/2 transform -translate-x-1/2 bg-white rounded-2xl shadow-lg px-8 py-4">
+                                <div class="flex items-center gap-4">
+                                    <a href="https://linkedin.com/in/curroale" target="_blank" class="text-gray-400 hover:text-[#00C29D]">
+                                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                        </svg>
+                                    </a>
+                                    <a href="https://github.com/curroale" target="_blank" class="text-gray-400 hover:text-[#00C29D]">
+                                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="inline-flex items-center rounded-full px-4 py-2 bg-[#00C29D]/10 text-[#00C29D] text-sm font-medium mb-6">
+                            FUNDADOR & CEO
+                        </div>
+                        <h2 class="text-3xl md:text-4xl font-bold text-secondary mb-6">
+                            Curro Alé
+                        </h2>
+                        <div class="space-y-6 text-lg text-accent leading-relaxed">
+                            <p>
+                                Con más de 4 años de experiencia en el sector del desarrollo de Software y Big Data, 
+                                mi pasión por la tecnología me impulsa a buscar soluciones innovadoras para problemas 
+                                sociales desatendidos por el avance tecnológico.
+                            </p>
+                            <p>
+                                "El poder prestar mis conocimientos para construir algo que realmente puede convertirse 
+                                en un avance tecnológico para mejorar el bienestar y la calidad de vida de las personas 
+                                con deterioro cognitivo me motiva a seguir investigando tecnologías, metodologías y 
+                                diferentes vías de diseño de aplicaciones."
+                            </p>
+                            <div class="grid grid-cols-2 gap-8 pt-6">
+                                <div class="bg-white rounded-xl p-6 shadow-lg">
+                                    <div class="text-2xl font-bold text-[#00C29D] mb-2">4+</div>
+                                    <p class="text-accent">Años de experiencia en desarrollo</p>
+                                </div>
+                                <div class="bg-white rounded-xl p-6 shadow-lg">
+                                    <div class="text-2xl font-bold text-[#00C29D] mb-2">IA</div>
+                                    <p class="text-accent">Especialista en desarrollo con IA</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Misión y Valores -->
+    <section class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-16">
+                    <!-- Misión -->
+                    <div>
+                        <div class="inline-flex items-center rounded-full px-4 py-2 bg-[#00C29D]/10 text-[#00C29D] text-sm font-medium mb-6">
+                            NUESTRA MISIÓN
+                        </div>
+                        <h2 class="text-3xl font-bold text-secondary mb-6">
+                            Transformando el cuidado cognitivo
+                        </h2>
+                        <p class="text-lg text-accent leading-relaxed mb-8">
+                            Nuestra misión es revolucionar la manera en que abordamos el deterioro cognitivo, 
+                            combinando tecnología innovadora con un enfoque profundamente humano. Buscamos empoderar 
+                            tanto a usuarios como a familiares, proporcionándoles las herramientas necesarias para 
+                            mantener y mejorar la calidad de vida.
+                        </p>
+                        <div class="bg-white rounded-xl p-6 shadow-lg">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="w-12 h-12 bg-[#00C29D]/10 rounded-xl flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-[#00C29D]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-bold text-secondary">Objetivos Clave</h3>
+                            </div>
+                            <ul class="space-y-3">
+                                <li class="flex items-center gap-3">
+                                    <svg class="w-5 h-5 text-[#00C29D]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                    <span class="text-accent">Mejorar la autonomía de los usuarios</span>
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <svg class="w-5 h-5 text-[#00C29D]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                    <span class="text-accent">Fortalecer vínculos familiares</span>
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <svg class="w-5 h-5 text-[#00C29D]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                    <span class="text-accent">Innovar en el cuidado cognitivo</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Valores -->
+                    <div>
+                        <div class="inline-flex items-center rounded-full px-4 py-2 bg-[#00C29D]/10 text-[#00C29D] text-sm font-medium mb-6">
+                            NUESTROS VALORES
+                        </div>
+                        <h2 class="text-3xl font-bold text-secondary mb-6">
+                            Los pilares que nos definen
+                        </h2>
+                        <div class="space-y-6">
+                            <div class="bg-white rounded-xl p-6 shadow-lg">
+                                <div class="flex items-start gap-4">
+                                    <div class="w-12 h-12 bg-[#00C29D]/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-6 h-6 text-[#00C29D]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-xl font-bold text-secondary mb-2">Empatía</h3>
+                                        <p class="text-accent">Ponemos el bienestar de nuestros usuarios y sus familias en el centro de cada decisión.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-white rounded-xl p-6 shadow-lg">
+                                <div class="flex items-start gap-4">
+                                    <div class="w-12 h-12 bg-[#00C29D]/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-6 h-6 text-[#00C29D]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-xl font-bold text-secondary mb-2">Innovación</h3>
+                                        <p class="text-accent">Buscamos constantemente nuevas formas de mejorar la experiencia y eficacia del cuidado cognitivo.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-white rounded-xl p-6 shadow-lg">
+                                <div class="flex items-start gap-4">
+                                    <div class="w-12 h-12 bg-[#00C29D]/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-6 h-6 text-[#00C29D]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-xl font-bold text-secondary mb-2">Confiabilidad</h3>
+                                        <p class="text-accent">Desarrollamos soluciones seguras y efectivas, respaldadas por investigación y evidencia científica.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Historia y Visión -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16">
+                    <div class="inline-flex items-center rounded-full px-4 py-2 bg-[#00C29D]/10 text-[#00C29D] text-sm font-medium mb-6">
+                        NUESTRA HISTORIA
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-secondary mb-6">
+                        El camino hacia la innovación en el cuidado cognitivo
+                    </h2>
+                </div>
+
+                <div class="relative">
+                    <!-- Línea de tiempo -->
+                    <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-[#00C29D]/20"></div>
+
+                    <!-- Eventos -->
+                    <div class="space-y-24">
+                        <div class="relative">
+                            <div class="flex items-center justify-center mb-8">
+                                <div class="w-4 h-4 bg-[#00C29D] rounded-full"></div>
+                            </div>
+                            <div class="bg-white rounded-2xl p-8 shadow-lg max-w-2xl mx-auto">
+                                <div class="text-xl font-bold text-[#00C29D] mb-2">2023</div>
+                                <h3 class="text-xl font-bold text-secondary mb-4">Nacimiento de la Idea</h3>
+                                <p class="text-lg text-accent leading-relaxed">
+                                    Tras observar la necesidad de soluciones más efectivas y accesibles para el cuidado 
+                                    cognitivo, comenzamos a desarrollar el concepto de Cognicise.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="relative">
+                            <div class="flex items-center justify-center mb-8">
+                                <div class="w-4 h-4 bg-[#00C29D] rounded-full"></div>
+                            </div>
+                            <div class="bg-white rounded-2xl p-8 shadow-lg max-w-2xl mx-auto">
+                                <div class="text-xl font-bold text-[#00C29D] mb-2">2024</div>
+                                <h3 class="text-xl font-bold text-secondary mb-4">Desarrollo y Lanzamiento</h3>
+                                <p class="text-lg text-accent leading-relaxed">
+                                    Inicio del desarrollo tecnológico y lanzamiento de la versión beta, incorporando 
+                                    feedback de usuarios reales para mejorar la experiencia.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="relative">
+                            <div class="flex items-center justify-center mb-8">
+                                <div class="w-4 h-4 bg-[#00C29D] rounded-full"></div>
+                            </div>
+                            <div class="bg-white rounded-2xl p-8 shadow-lg max-w-2xl mx-auto">
+                                <div class="text-xl font-bold text-[#00C29D] mb-2">2025</div>
+                                <h3 class="text-xl font-bold text-secondary mb-4">El Futuro</h3>
+                                <p class="text-lg text-accent leading-relaxed">
+                                    Expansión de funcionalidades con realidad virtual y dispositivos especializados, 
+                                    llevando el cuidado cognitivo al siguiente nivel.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="py-20 bg-gradient-to-br from-gray-900 to-[#00142D] text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-[#00C29D]/10"></div>
+        <div class="container mx-auto px-6 relative">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-4xl font-bold mb-6">Únete a nuestra misión</h2>
+                <p class="text-xl text-gray-300 mb-8 leading-relaxed">
+                    Sé parte de la revolución en el cuidado cognitivo. Juntos podemos hacer la diferencia 
+                    en la vida de miles de personas.
+                </p>
+                <a href="#verkami" class="inline-flex items-center justify-center bg-[#00C29D] text-white px-8 py-4 rounded-xl font-semibold hover:bg-[#00C29D]/90 transition-all transform hover:scale-105">
+                    Apoyar el Proyecto
+                    <svg class="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
