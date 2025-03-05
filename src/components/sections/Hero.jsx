@@ -25,7 +25,7 @@ const Hero = () => {
                 VISIÓN PREDICTIVA PARA EL CUIDADO NEURODEGENERATIVO
               </span>
 
-              <h1>
+              <h1 className="text-6xl md:text-6xl lg:text-6xl font-bold font-figtree">
                 Cuidado cognitivo y monitorización impulsadas por IA
               </h1>
 
