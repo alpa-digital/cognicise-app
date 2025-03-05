@@ -5,7 +5,7 @@ const { Resend } = require('resend');
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 // ID de la audiencia de Resend
-const AUDIENCE_ID = '0463a64f-33cd-4769-bb2a-db90c2265c32';
+const AUDIENCE_ID = '432a51ac-c491-4e7a-ab13-9029f9848ee7';
 
 exports.handler = async function(event, context) {
   // Habilitar CORS
@@ -48,27 +48,43 @@ exports.handler = async function(event, context) {
     console.log('Received waitlist submission for:', email);
     
     // 1. Añadir a la audiencia de Resend
-    let audienceSuccess = false;
-    try {
-      const audienceResponse = await resend.contacts.create({
-        email: email,
-        audienceId: AUDIENCE_ID,
-        firstName: name,
-        lastName: interest,
-        unsubscribed: false
-      });
-      
-      console.log('Contact added to audience:', audienceResponse);
-      
-      if (audienceResponse.error) {
-        console.error('Error in audience response:', audienceResponse.error);
-      } else {
-        audienceSuccess = true;
-      }
-    } catch (audienceError) {
-      console.error('Error adding contact to audience:', audienceError);
-      // Continuamos con el proceso incluso si hay un error al añadir a la audiencia
-    }
+    // 1. Añadir a la audiencia de Resend
+let audienceSuccess = false;
+console.log('Intentando añadir contacto a la audiencia...');
+console.log('Audiencia ID a utilizar:', '432a51ac-c491-4e7a-ab13-9029f9848ee7');
+
+const audiencekey = new Resend('re_iJha37aJ_Aj5VbeTaby4QVcD85W8W82Bc');
+console.log('Instancia de Resend para audiencia creada');
+
+try {
+  const apiKey = 're_iJha37aJ_Aj5VbeTaby4QVcD85W8W82Bc';
+  const directResponse = await fetch('https://api.resend.com/audiences/432a51ac-c491-4e7a-ab13-9029f9848ee7/contacts', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${apiKey}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      email: email,
+      audienceId: '432a51ac-c491-4e7a-ab13-9029f9848ee7',
+      firstName: name,
+      lastName: interest,
+      unsubscribed: false
+    })
+  });
+  
+  const directResult = await directResponse.text();
+  console.log('Respuesta directa de la API:', directResult);
+  
+  try {
+    const jsonResponse = JSON.parse(directResult);
+    console.log('Respuesta como JSON:', jsonResponse);
+  } catch (e) {
+    console.log('No se pudo parsear como JSON');
+  }
+} catch (directApiError) {
+  console.error('Error con llamada directa a API:', directApiError);
+}
     
     // 2. Enviar email de confirmación al usuario
     const currentDate = new Date();
