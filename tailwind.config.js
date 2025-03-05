@@ -1,48 +1,51 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{js,jsx,ts,tsx,html}"], 
+  content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx,html}"],
   theme: {
     extend: {
       colors: {
-        primary: '#00C29D',        // --main-yellow y --main-salmon en el CSS original
-        secondary: '#181E4B',      // --main-navy_blue 
-        accent: '#5E6282',         // --main-light_blue
-        'light-grey': '#F9F7FE',   // --light-grey
-        'light-purple': '#F9F7FE', // --light-purple
+        primary: '#00C29D',
+        secondary: '#181E4B',
+        accent: '#5E6282',
+        lightGrey: '#F9F7FE',
+        lightPurple: '#F9F7FE',
       },
       fontFamily: {
-        montserrat: ['Montserrat', 'sans-serif'],  // Changed from poppins
-        figtree: ['Figtree', 'serif'],       // Changed from volkhov
+        montserrat: ['Montserrat', 'sans-serif'],
+        figtree: ['Figtree', 'sans-serif'],
       },
       borderRadius: {
-        DEFAULT: '16px',           // --border-radius
-        'large': '20px',           // --border-radius-big
+        DEFAULT: '16px',
+        large: '20px',
       },
       boxShadow: {
-        'custom': '0px 0px 30px 8px rgba(0, 0, 0, 0.060)', // --box-shadow
+        custom: '0px 0px 30px 8px rgba(0, 0, 0, 0.060)',
       },
       transitionDuration: {
-        'short': '0.2s',  // --animation-duration-short
-        'long': '0.5s',   // --animation-duration-long
+        short: '0.2s',
+        long: '0.5s',
       },
       transitionTimingFunction: {
-        'custom-ease': 'cubic-bezier(.34, 0, 0, 1)', // --easing
+        'custom-ease': 'cubic-bezier(.34, 0, 0, 1)',
       },
       padding: {
-        'big': '10vw',    // --padding-big
-        'small': '2vw',   // --padding-small
+        big: '10vw',
+        small: '2vw',
       },
       fontSize: {
-        'subtitle': '1.2rem',     // --text-subtitle-size
-        'p': '0.8rem',            // --font-p-size
-        'subtitles': '1rem',      // --font-subtitles-size
+        subtitle: '1.2rem',
+        base: '1rem',
+        p: '0.8rem',
       },
       fontWeight: {
-        'p': '400',               // --font-p-weight
-        'subtitles': '600',       // --font-subtitles-weight 
-        'titles': '700',          // --font-titles-weight
+        normal: '400',
+        semibold: '600',
+        bold: '700',
+        p: '400',
+        subtitles: '600',
+        titles: '700',
       },
     },
   },
   plugins: [],
-}
+};

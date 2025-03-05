@@ -128,7 +128,7 @@ const ImprovedSimplifiedCTA = () => {
       </section>
 
       {/* Modal Component */}
-      <WaitlistModal isOpen={isModalOpen} onClose={closeModal} />
+      <WaitlistModal isOpen={isModalOpen} onClose={closeModal}/>
     </>
   );
 };

@@ -33,7 +33,6 @@ const Hero = () => {
               Para el especialista, cada pequeño detalle cuenta. 
               Nuestra plataforma captura estos detalles a través de la ejercitación diaria, proporcionando a los especialistas 
               insights clínicos impulsados por IA que transforman diagnósticos y refinan tratamientos.
-
               </p>
 
               <div className="space-y-6 w-full" id="button-demo-part">
