@@ -2,7 +2,7 @@
 const { Resend } = require('resend');
 
 // Usar la API key proporcionada
-const resend = new Resend('re_iJha37aJ_Aj5VbeTaby4QVcD85W8W82Bc');
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 // ID de la audiencia de Resend
 const AUDIENCE_ID = '0463a64f-33cd-4769-bb2a-db90c2265c32';
@@ -80,11 +80,15 @@ exports.handler = async function(event, context) {
     });
     
     // Email para el usuario con diseño mejorado y compatible
-    const userEmailHtml = `
-        <!DOCTYPE html PUBLIC "-\/\/W3C\/\/DTD XHTML 1.0 Transitional\/\/EN" "http:\/\/www.w3.org\/TR\/xhtml1\/DTD\/xhtml1-transitional.dtd">
-        <html xmlns="http:\/\/www.w3.org\/1999\/xhtml">
+    const data = await resend.emails.send({
+      from: 'Equipo de Cognicise <info@cognicise.app>',
+      to: [email],
+      subject: '¡Bienvenido a la lista de espera de Cognicise! 🧠',
+      html: `
+        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        <html xmlns="http://www.w3.org/1999/xhtml">
         <head>
-          <meta http-equiv="Content-Type" content="text\/html; charset=UTF-8" />
+          <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
           <title>Bienvenido a Cognicise</title>
         </head>
@@ -133,6 +137,82 @@ exports.handler = async function(event, context) {
                       <!-- Características -->
                       <h3 style="font-weight: 600; color: #181E4B; font-size: 16px; margin-bottom: 15px; font-family: Arial, sans-serif;">¿Qué hace Cognicise tan especial?</h3>
                       
+                      <!-- Tabla de características -->
+                      <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 30px;">
+                        <tr>
+                          <td width="50%" valign="top" style="padding-right: 8px; padding-bottom: 15px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #F9F7FE; padding: 15px; border-radius: 10px; height: 100%;">
+                              <tr>
+                                <td align="center" style="padding-bottom: 10px;">
+                                  <div style="width: 40px; height: 40px; background-color: rgba(0, 194, 157, 0.2); border-radius: 50%; display: inline-block; line-height: 40px; text-align: center;">
+                                    <span style="color: #00C29D; font-weight: bold;">✓</span>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td align="center">
+                                  <p style="font-weight: 600; font-size: 15px; color: #181E4B; margin-bottom: 5px; font-family: Arial, sans-serif;">Análisis Predictivo</p>
+                                  <p style="font-size: 13px; color: #5E6282; margin: 0; font-family: Arial, sans-serif;">Insights clínicos valiosos basados en datos</p>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                          <td width="50%" valign="top" style="padding-left: 8px; padding-bottom: 15px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #F9F7FE; padding: 15px; border-radius: 10px; height: 100%;">
+                              <tr>
+                                <td align="center" style="padding-bottom: 10px;">
+                                  <div style="width: 40px; height: 40px; background-color: rgba(0, 194, 157, 0.2); border-radius: 50%; display: inline-block; line-height: 40px; text-align: center;">
+                                    <span style="color: #00C29D; font-weight: bold;">✓</span>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td align="center">
+                                  <p style="font-weight: 600; font-size: 15px; color: #181E4B; margin-bottom: 5px; font-family: Arial, sans-serif;">Detección Precoz</p>
+                                  <p style="font-size: 13px; color: #5E6282; margin: 0; font-family: Arial, sans-serif;">Identificación temprana de cambios cognitivos</p>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td width="50%" valign="top" style="padding-right: 8px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #F9F7FE; padding: 15px; border-radius: 10px; height: 100%;">
+                              <tr>
+                                <td align="center" style="padding-bottom: 10px;">
+                                  <div style="width: 40px; height: 40px; background-color: rgba(0, 194, 157, 0.2); border-radius: 50%; display: inline-block; line-height: 40px; text-align: center;">
+                                    <span style="color: #00C29D; font-weight: bold;">✓</span>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td align="center">
+                                  <p style="font-weight: 600; font-size: 15px; color: #181E4B; margin-bottom: 5px; font-family: Arial, sans-serif;">Ejercitación Personalizada</p>
+                                  <p style="font-size: 13px; color: #5E6282; margin: 0; font-family: Arial, sans-serif;">Adaptada a cada perfil de paciente</p>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                          <td width="50%" valign="top" style="padding-left: 8px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #F9F7FE; padding: 15px; border-radius: 10px; height: 100%;">
+                              <tr>
+                                <td align="center" style="padding-bottom: 10px;">
+                                  <div style="width: 40px; height: 40px; background-color: rgba(0, 194, 157, 0.2); border-radius: 50%; display: inline-block; line-height: 40px; text-align: center;">
+                                    <span style="color: #00C29D; font-weight: bold;">✓</span>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td align="center">
+                                  <p style="font-weight: 600; font-size: 15px; color: #181E4B; margin-bottom: 5px; font-family: Arial, sans-serif;">Ecosistema Conectado</p>
+                                  <p style="font-size: 13px; color: #5E6282; margin: 0; font-family: Arial, sans-serif;">Plataforma integral profesional-paciente</p>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                      </table>
+                      
                       <!-- Lista de beneficios -->
                       <p style="color: #5E6282; margin-bottom: 15px; font-size: 15px; font-family: Arial, sans-serif;">Como miembro de nuestra lista de espera, recibirás:</p>
                       <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 30px;">
@@ -158,10 +238,26 @@ exports.handler = async function(event, context) {
                         </tr>
                       </table>
                       
+                      <!-- Separador -->
+                      <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin: 30px 0;">
+                        <tr>
+                          <td bgcolor="#E5E7EB" style="height: 1px;"></td>
+                        </tr>
+                      </table>
+                      
                       <!-- Preguntas y contacto -->
                       <p style="color: #5E6282; margin-bottom: 25px; font-size: 15px; font-family: Arial, sans-serif;">
                         ¿Tienes preguntas o sugerencias? Responde directamente a este correo y estaremos encantados de hablar contigo.
                       </p>
+                      
+                      <!-- Botón CTA -->
+                      <table border="0" cellpadding="0" cellspacing="0" style="margin: 30px auto;">
+                        <tr>
+                          <td bgcolor="#00C29D" style="padding: 14px 20px; border-radius: 10px; text-align: center;">
+                            <a href="https://cognicise.app" style="color: white; text-decoration: none; font-weight: 600; font-size: 16px; font-family: Arial, sans-serif; display: inline-block;">Visitar nuestra web</a>
+                          </td>
+                        </tr>
+                      </table>
                       
                       <!-- Redes sociales -->
                       <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-top: 30px;">
@@ -169,6 +265,22 @@ exports.handler = async function(event, context) {
                           <td align="center">
                             <h4 style="font-weight: 600; color: #181E4B; margin-bottom: 15px; font-size: 15px; font-family: Arial, sans-serif;">Síguenos en redes sociales</h4>
                             <p style="color: #5E6282; margin-bottom: 15px; font-size: 14px; font-family: Arial, sans-serif;">Y mantente al día de todas nuestras novedades</p>
+                            
+                            <table border="0" cellpadding="0" cellspacing="0">
+                              <tr>
+                                <td style="padding: 0 10px;">
+                                  <a href="https://instagram.com/cognicise.app" style="text-decoration: none;">
+                                    <table border="0" cellpadding="0" cellspacing="0">
+                                      <tr>
+                                        <td bgcolor="#F9F7FE" width="40" height="40" align="center" style="border-radius: 50%;">
+                                          <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" width="20" height="20" alt="Instagram" style="display: block; border: 0;" />
+                                        </td>
+                                      </tr>
+                                    </table>
+                                  </a>
+                                </td>
+                              </tr>
+                            </table>
                           </td>
                         </tr>
                       </table>
@@ -189,24 +301,22 @@ exports.handler = async function(event, context) {
           </table>
         </body>
         </html>
-      `;
-      
-    const data = await resend.emails.send({
-      from: 'Equipo de Cognicise <info@cognicise.app>',
-      to: [email],
-      subject: '¡Bienvenido a la lista de espera de Cognicise! 🧠',
-      html: userEmailHtml,
+      `,
     });
     
     console.log('Email sent successfully:', data);
     
     // 3. Enviar email de notificación para el equipo
     try {
-      const teamEmailHtml = `
-          <!DOCTYPE html PUBLIC "-\/\/W3C\/\/DTD XHTML 1.0 Transitional\/\/EN" "http:\/\/www.w3.org\/TR\/xhtml1\/DTD\/xhtml1-transitional.dtd">
-          <html xmlns="http:\/\/www.w3.org\/1999\/xhtml">
+      await resend.emails.send({
+        from: 'Cognicise Waitlist <info@cognicise.app>',
+        to: ['info@cognicise.app'], // Correo del equipo
+        subject: '🚀 Nueva suscripción a la lista de espera de Cognicise',
+        html: `
+          <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+          <html xmlns="http://www.w3.org/1999/xhtml">
           <head>
-            <meta http-equiv="Content-Type" content="text\/html; charset=UTF-8" />
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             <title>Nueva suscripción a la lista de espera</title>
           </head>
@@ -301,13 +411,7 @@ exports.handler = async function(event, context) {
             </table>
           </body>
           </html>
-        `;
-      
-      await resend.emails.send({
-        from: 'Cognicise Waitlist <info@cognicise.app>',
-        to: ['info@cognicise.app'], // Correo del equipo
-        subject: '🚀 Nueva suscripción a la lista de espera de Cognicise',
-        html: teamEmailHtml,
+        `,
       });
       console.log('Notification email sent to team');
     } catch (notificationError) {
