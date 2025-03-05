@@ -57,7 +57,7 @@ const audiencekey = new Resend('re_iJha37aJ_Aj5VbeTaby4QVcD85W8W82Bc');
 console.log('Instancia de Resend para audiencia creada');
 
 try {
-  const apiKey = 're_iJha37aJ_Aj5VbeTaby4QVcD85W8W82Bc';
+  const apiKey = 're_iJha37aJ_Aj5VbeTaby4QVcD85W8W82Bc'; 
   const directResponse = await fetch('https://api.resend.com/audiences/432a51ac-c491-4e7a-ab13-9029f9848ee7/contacts', {
     method: 'POST',
     headers: {
@@ -67,8 +67,8 @@ try {
     body: JSON.stringify({
       email: email,
       audienceId: '432a51ac-c491-4e7a-ab13-9029f9848ee7',
-      firstName: name,
-      lastName: interest,
+      first_name: name,
+      last_name: interest,
       unsubscribed: false
     })
   });
