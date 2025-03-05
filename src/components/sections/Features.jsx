@@ -14,7 +14,7 @@ const FeatureCard = ({ icon, title, description }) => (
 
 const Features = () => {
   return (
-    <section id="que-es" className="py-10 px-8  bg-light-grey" id="second-section">
+    <section id="que-es" className="py-10 px-8  bg-[#FDFCFF]" id="second-section">
       <div className="container mx-auto px-padding-small md:px-padding-big">
         <div className="grid md:grid-cols-3 gap-8 section-content">
           {/* Autonomía */}

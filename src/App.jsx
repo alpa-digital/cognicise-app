@@ -35,7 +35,6 @@ function App() {
           <Features />
           <ProductHero />
           <MainFeatures />
-          <CTASection />
           <FAQ />
           
         </main>

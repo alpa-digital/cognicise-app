@@ -17,7 +17,7 @@ const ImprovedSimplifiedCTA = () => {
 
   return (
     <>
-      <section id="waitlist" className="py-24 relative bg-light-grey">
+      <section id="waitlist" className="py-24 relative bg-[#FDFCFF]">
         <div className="container mx-auto px-padding-small md:px-padding-big">
           <div className="max-w-4xl mx-auto">
             {/* Encabezado simple */}
@@ -37,7 +37,7 @@ const ImprovedSimplifiedCTA = () => {
             </div>
             
             {/* Tarjeta simple */}
-            <div className="bg-white rounded-3xl shadow-lg overflow-hidden">
+            <div className="py-16 bg-white  rounded-3xl shadow-lg overflow-hidden">
               <div className="grid md:grid-cols-2">
                 {/* Lado izquierdo */}
                 <div className="p-8 md:p-10 bg-primary/5">
