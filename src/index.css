@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Figtree:wght@400;700&display=swap');
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+  }
+
+  h1 {
+    @apply font-figtree font-titles text-5xl md:text-6xl text-secondary leading-tight;
+  }
+
+  h2 {
+    @apply font-figtree text-3xl md:text-4xl font-titles text-secondary;
+  }
+
+  p {
+    @apply text-p font-p text-secondary;
+  }
+}
+
+@layer components {
+  /* Componentes reutilizables */
+  .section-title {
+    @apply font-figtree text-3xl md:text-4xl font-titles text-secondary mb-6;
+  }
+  
+  .highlight-badge {
+    @apply inline-flex items-center rounded-full px-4 py-2 bg-primary/10 text-primary text-sm font-medium mb-6;
+  }
+
+  .primary-button {
+    @apply bg-primary text-white px-8 py-4 rounded-lg font-semibold transition-all transform hover:scale-105 hover:shadow-custom duration-short ease-custom-ease;
+  }
+
+  .outline-button {
+    @apply border border-primary text-primary px-8 py-4 rounded-lg font-semibold hover:bg-primary hover:text-white transition-all transform hover:scale-105 duration-short ease-custom-ease;
+  }
+
+  .feature-card {
+    @apply bg-white rounded-large p-8 shadow-custom hover:shadow-xl transition-all duration-long ease-custom-ease hover:scale-105;
+  }
+  
+  .icon-container {
+    @apply w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6;
+  }
+
+  .img-hover {
+    @apply hover:scale-105 transition-transform duration-long ease-custom-ease;
+  }
+}
+
+/* Animaciones específicas y estilos que no se pueden lograr fácilmente con Tailwind */
+#underlined-text {
+  background-image: url('assets/img/green-line.png');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position-y: 75px;
+}
+
+.gradient {
+  border-radius: 100%;
+  position: absolute;
+  background-color: theme('colors.primary');
+  width: 300px;
+  height: 300px;
+  left: -100px;
+  top: -40px;
+  filter: blur(75px);
+  z-index: -6;
+  opacity: 0.2;
+}
+
+.circle-bg {
+  width: 300px;
+  height: 300px;
+  background-color: theme('colors.light-purple');
+  z-index: -5;
+  position: absolute;
+  top: -75px;
+  right: -75px;
+  border-radius: 100%;
+  filter: blur(15px);
+}
