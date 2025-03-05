@@ -33,9 +33,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "postinstall": "netlify-lambda install",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "postinstall": "netlify-lambda install"
   },
   "eslintConfig": {
     "extends": [
@@ -58,6 +58,7 @@
   "devDependencies": {
     "autoprefixer": "^9.8.8",
     "netlify-cli": "^19.0.1",
+    "netlify-lambda": "^2.0.16",
     "postcss": "^8.5.3",
     "postcss-loader": "^8.1.1",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17"
