@@ -169,7 +169,7 @@ const WaitlistModal = ({ isOpen, onClose }) => {
                   <option value="Análisis Predictivo">Análisis predictivo con IA</option>
                   <option value="Detección Precoz">Detección precoz de cambios cognitivos</option>
                   <option value="Ejercitación Personalizada">Ejercitación cognitiva personalizada</option>
-                  <option value="Panel Profesional">Panel para profesionales</option>
+                  <option value="Panel Profesional">Panel para profesionales </option>
                 </select>
                 <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                   <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
