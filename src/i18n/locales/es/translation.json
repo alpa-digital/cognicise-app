@@ -1,0 +1,171 @@
+{
+    "meta": {
+      "title": "Cognicise | Plataforma de monitorización cognitiva impulsada por IA",
+      "description": "Plataforma de monitorización neurocognitiva con análisis predictivo para profesionales de la salud. Mejora el diagnóstico temprano y el tratamiento de trastornos cognitivos."
+    },
+    "header": {
+      "joinWaitlist": "Únete a la lista de espera",
+      "englishVersion": "English version"
+    },
+    "hero": {
+      "tagline": "VISIÓN PREDICTIVA PARA EL CUIDADO NEURODEGENERATIVO",
+      "title": "Cuidado cognitivo y monitorización impulsadas por IA",
+      "description": "Para el especialista, cada pequeño detalle cuenta. Nuestra plataforma captura estos detalles a través de la ejercitación diaria, proporcionando a los especialistas insights clínicos impulsados por IA que transforman diagnósticos y refinan tratamientos.",
+      "joinWaitlist": "Únete a la lista de espera",
+      "badges": {
+        "earlyBird": "Early Bird - Acceso Beta",
+        "freeFeatures": "Funcionalidades básicas gratuitas"
+      }
+    },
+    "features": {
+      "predictiveAnalysis": {
+        "title": "Análisis Predictivo",
+        "description": "Transformamos datos de ejercitación en insights que permiten a los especialistas identificar tendencias y anticipar cambios en la evolución cognitiva."
+      },
+      "earlyDetection": {
+        "title": "Detección Precoz",
+        "description": "Algoritmos especializados que identifican sutiles anomalías en el desempeño cognitivo, permitiendo intervenciones terapéuticas cuando son más efectivas."
+      },
+      "connectedEcosystem": {
+        "title": "Ecosistema Conectado",
+        "description": "Plataforma integrada que vincula ejercitación del paciente, análisis profesional y comunicación familiar, creando un círculo de cuidado completo y coordinado."
+      }
+    },
+    "productHero": {
+      "badge": "REVOLUCIONANDO LA MONITORIZACIÓN NEUROCOGNITIVA",
+      "title": "Plataforma que conecta la ejercitación con un análisis profesional",
+      "description": "Anticiparse ante el deterioro cognitivo es marcar la diferencia, Cognicise ofrece a los especialistas una solución para analizar patrones de desempeño de los pacientes, genera alertas ante anomalías y proporcionar recomendaciones basadas en datos para potenciar el criterio clínico."
+    },
+    "mainFeatures": {
+      "patientManagement": {
+        "badge": "GESTIÓN INTEGRAL DEL PACIENTE",
+        "title": "Visión 360° del paciente para optimizar el seguimiento",
+        "description": "Cognicise centraliza el expediente completo del paciente en un entorno digital. Desde ejercitación hasta diagnósticos y evolución, toda la información está organizada para facilitar análisis detallados y decisiones basadas en datos completos.",
+        "unifiedHistory": {
+          "title": "Historial Clínico Unificado",
+          "description": "Integración de diagnósticos, tratamientos, resultados de ejercitación y notas clínicas en un expediente digital completo y accesible."
+        },
+        "performanceAnalysis": {
+          "title": "Análisis de Rendimiento",
+          "description": "Visualización de métricas clave sobre adherencia, evolución y áreas de oportunidad basadas en los datos de ejercitación del paciente."
+        },
+        "badge1": "Panel analítico integral"
+      },
+      "predictiveAnalysis": {
+        "badge": "PREDICCIÓN COGNITIVA IMPULSADA POR IA",
+        "title": "Análisis predictivo que alerta y anticipa cambios cognitivos",
+        "description": "Identifica patrones imperceptibles, detecta anomalías semanas antes de manifestarse clínicamente y obtén proyecciones personalizadas que te permiten intervenir en el momento óptimo para maximizar la efectividad terapéutica.",
+        "advancedPrediction": {
+          "title": "Predicción Clínica Avanzada",
+          "earlyDetection": "Detección Temprana",
+          "alertsDesc": "Alertas predictivas automáticas",
+          "aiDiagnostic": "IA Diagnóstica",
+          "modelingDesc": "Modelado predictivo personalizado"
+        }
+      },
+      "cognitiveExercises": {
+        "badge": "EJERCITACIÓN COGNITIVA CONECTADA",
+        "title": "Ejercicitación gratuita que evoluciona con el paciente",
+        "description": "Nuestro sistema de IA analiza el rendimiento en tiempo real, ofreciendo a cada paciente ejercitación gratuita y personalizada. Los ejercicios se adaptan automáticamente, optimizando la estimulación cognitiva mientras generan datos valiosos para el seguimiento clínico y análisis predictivo del especialista.",
+        "uniqueExercises": "Ejercicios únicos diseñados por expertos en neuropsicología",
+        "categories": "Categorías cognitivas principales: Memoria, Atención, Cálculo y Percepción",
+        "mobileApp": "Integración con App Móvil"
+      },
+      "waitlistBadge": "Lanzamiento Mayo 2025",
+      "waitlistTitle": "Únete a nuestra lista de espera",
+      "waitlistDesc": "Sé de los primeros en acceder a nuestra plataforma de monitorización cognitiva impulsada por IA",
+      "earlyAdopters": {
+        "title": "Beneficios para Early Adopters",
+        "priorityAccess": "Acceso prioritario a versión beta",
+        "premiumFeatures": "Funcionalidades premium gratuitas",
+        "allExercises": "Acceso a todos los ejercicios cognitivos",
+        "prioritySupport": "Soporte prioritario para especialistas",
+        "availableSpots": "Cupos disponibles para early adopters",
+        "spotsRemaining": "Quedan {{spots}} de 100 plazas disponibles"
+      },
+      "reserveYourSpot": {
+        "title": "Reserva tu plaza ahora",
+        "description": "Completa nuestro breve formulario para unirte a la lista de espera y asegurar tu acceso prioritario.",
+        "joinButton": "Unirme a la lista de espera",
+        "limitedSpots": "Plazas limitadas · Lanzamiento Mayo 2025"
+      }
+    },
+    "faq": {
+      "badge": "PREGUNTAS FRECUENTES",
+      "title": "¿Tienes dudas sobre Cognicise?",
+      "description": "Encuentra respuestas a las preguntas más comunes sobre nuestro proyecto",
+      "questions": {
+        "availability": {
+          "question": "¿Cuándo estará disponible Cognicise?",
+          "answer": "Planeamos lanzar Cognicise en mayo de 2025, tras completar todas las fases de desarrollo y pruebas. Los mecenas Early Bird tendrán acceso anticipado durante la fase de pruebas en abril.",
+          "earlyAccess": "Early Bird: Acceso Beta en Abril 2025"
+        },
+        "freeFeatures": {
+          "question": "¿Las funciones básicas serán siempre gratuitas?",
+          "answer": "Sí, las funcionalidades básicas de ejercitación, recordatorios y contacto con familiares siempre estarán disponibles de forma gratuita. Nuestro compromiso es mantener el cuidado cognitivo accesible para todos.",
+          "guarantee": "Funcionalidades básicas garantizadas"
+        },
+        "devices": {
+          "question": "¿En qué dispositivos estará disponible?",
+          "answer": "Cognicise estará disponible inicialmente para dispositivos iOS y Android. Además, los usuarios Premium tendrán acceso a nuestra plataforma web para una experiencia completa desde cualquier dispositivo.",
+          "android": "Android",
+          "ios": "iOS"
+        }
+      },
+      "notFoundAnswer": {
+        "title": "¿No encuentras tu respuesta?",
+        "description": "Escríbenos y te responderemos lo antes posible"
+      }
+    },
+    "contact": {
+      "title": "Conecta con Cognicise",
+      "description": "¿Tienes preguntas sobre Cognicise o quieres saber más sobre cómo apoyar el proyecto? Estamos aquí para ayudarte.",
+      "email": "Email",
+      "instagram": "Instagram",
+      "web": "Web"
+    },
+    "footer": {
+      "description": "Transformando el cuidado cognitivo mediante tecnología innovadora y conexión familiar.",
+      "quickLinks": "Links Rápidos",
+      "whatIs": "¿Qué es Cognicise?",
+      "features": "Funcionalidades",
+      "faq": "Preguntas frecuentes",
+      "joinWaitlist": "Únete a la lista de espera",
+      "quickContact": "Contacto Rápido",
+      "comingSoon": "Próximamente en:",
+      "rights": "Todos los derechos reservados."
+    },
+    "waitlistModal": {
+      "title": "Únete a nuestra lista de espera",
+      "subtitle": "Sé de los primeros en probar Cognicise cuando esté disponible",
+      "form": {
+        "name": "Nombre (opcional)",
+        "namePlaceholder": "Tu nombre",
+        "email": "Correo electrónico",
+        "emailPlaceholder": "ejemplo@correo.com",
+        "interest": "¿Qué te interesa más de Cognicise?",
+        "interestOptions": {
+          "all": "Todas las funcionalidades",
+          "predictive": "Análisis predictivo con IA",
+          "earlyDetection": "Detección precoz de cambios cognitivos",
+          "personalizedExercises": "Ejercitación cognitiva personalizada",
+          "professionalPanel": "Panel para profesionales"
+        },
+        "submitButton": "Unirme a la lista de espera",
+        "sending": "Enviando...",
+        "tryAgain": "Intentar de nuevo",
+        "disclaimer": "Al unirte, aceptas recibir actualizaciones exclusivas sobre el lanzamiento"
+      },
+      "success": {
+        "title": "¡Gracias por unirte!",
+        "message": "Te contactaremos pronto con novedades sobre Cognicise."
+      },
+      "errors": {
+        "requiredEmail": "Por favor, introduce un email válido",
+        "invalidEmail": "Por favor, introduce un correo electrónico válido",
+        "requiredName": "Por favor, introduce tu nombre",
+        "connectionError": "No se pudo conectar con el servidor. Por favor, inténtalo de nuevo más tarde.",
+        "genericError": "Ocurrió un error. Por favor, inténtalo de nuevo."
+      }
+    }
+  }

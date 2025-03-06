@@ -1,0 +1,171 @@
+{
+    "meta": {
+      "title": "Cognicise | AI-powered cognitive monitoring platform",
+      "description": "Neurocognitive monitoring platform with predictive analytics for healthcare professionals. Improves early diagnosis and treatment of cognitive disorders."
+    },
+    "header": {
+      "joinWaitlist": "Join the waitlist",
+      "englishVersion": "Versión en español"
+    },
+    "hero": {
+      "tagline": "PREDICTIVE VISION FOR NEURODEGENERATIVE CARE",
+      "title": "AI-powered cognitive care and monitoring",
+      "description": "For specialists, every small detail matters. Our platform captures these details through daily exercises, providing specialists with AI-driven clinical insights that transform diagnoses and refine treatments.",
+      "joinWaitlist": "Join the waitlist",
+      "badges": {
+        "earlyBird": "Early Bird - Beta Access",
+        "freeFeatures": "Free basic features"
+      }
+    },
+    "features": {
+      "predictiveAnalysis": {
+        "title": "Predictive Analysis",
+        "description": "We transform exercise data into insights that allow specialists to identify trends and anticipate changes in cognitive evolution."
+      },
+      "earlyDetection": {
+        "title": "Early Detection",
+        "description": "Specialized algorithms that identify subtle anomalies in cognitive performance, enabling therapeutic interventions when they are most effective."
+      },
+      "connectedEcosystem": {
+        "title": "Connected Ecosystem",
+        "description": "Integrated platform that links patient exercise, professional analysis, and family communication, creating a complete and coordinated care circle."
+      }
+    },
+    "productHero": {
+      "badge": "REVOLUTIONIZING NEUROCOGNITIVE MONITORING",
+      "title": "Platform connecting exercises with professional analysis",
+      "description": "Anticipating cognitive decline makes all the difference. Cognicise offers specialists a solution to analyze patient performance patterns, generates alerts for anomalies, and provides data-driven recommendations to enhance clinical judgment."
+    },
+    "mainFeatures": {
+      "patientManagement": {
+        "badge": "COMPREHENSIVE PATIENT MANAGEMENT",
+        "title": "360° patient view to optimize monitoring",
+        "description": "Cognicise centralizes the patient's complete record in a digital environment. From exercises to diagnoses and evolution, all information is organized to facilitate detailed analysis and data-driven decisions.",
+        "unifiedHistory": {
+          "title": "Unified Clinical History",
+          "description": "Integration of diagnoses, treatments, exercise results, and clinical notes in a complete and accessible digital record."
+        },
+        "performanceAnalysis": {
+          "title": "Performance Analysis",
+          "description": "Visualization of key metrics on adherence, evolution, and areas of opportunity based on patient exercise data."
+        },
+        "badge1": "Comprehensive analytical panel"
+      },
+      "predictiveAnalysis": {
+        "badge": "AI-POWERED COGNITIVE PREDICTION",
+        "title": "Predictive analysis that alerts and anticipates cognitive changes",
+        "description": "Identifies imperceptible patterns, detects anomalies weeks before they manifest clinically, and provides personalized projections that allow you to intervene at the optimal moment to maximize therapeutic effectiveness.",
+        "advancedPrediction": {
+          "title": "Advanced Clinical Prediction",
+          "earlyDetection": "Early Detection",
+          "alertsDesc": "Automatic predictive alerts",
+          "aiDiagnostic": "AI Diagnostics",
+          "modelingDesc": "Personalized predictive modeling"
+        }
+      },
+      "cognitiveExercises": {
+        "badge": "CONNECTED COGNITIVE EXERCISES",
+        "title": "Free exercises that evolve with the patient",
+        "description": "Our AI system analyzes performance in real-time, offering each patient free and personalized exercises. The exercises adapt automatically, optimizing cognitive stimulation while generating valuable data for clinical monitoring and predictive analysis by the specialist.",
+        "uniqueExercises": "Unique exercises designed by neuropsychology experts",
+        "categories": "Main cognitive categories: Memory, Attention, Calculation, and Perception",
+        "mobileApp": "Mobile App Integration"
+      },
+      "waitlistBadge": "Launch May 2025",
+      "waitlistTitle": "Join our waitlist",
+      "waitlistDesc": "Be among the first to access our AI-powered cognitive monitoring platform",
+      "earlyAdopters": {
+        "title": "Benefits for Early Adopters",
+        "priorityAccess": "Priority access to beta version",
+        "premiumFeatures": "Free premium features",
+        "allExercises": "Access to all cognitive exercises",
+        "prioritySupport": "Priority support for specialists",
+        "availableSpots": "Available spots for early adopters",
+        "spotsRemaining": "{{spots}} out of 100 spots remaining"
+      },
+      "reserveYourSpot": {
+        "title": "Reserve your spot now",
+        "description": "Complete our short form to join the waitlist and secure your priority access.",
+        "joinButton": "Join the waitlist",
+        "limitedSpots": "Limited spots · Launch May 2025"
+      }
+    },
+    "faq": {
+      "badge": "FREQUENTLY ASKED QUESTIONS",
+      "title": "Do you have questions about Cognicise?",
+      "description": "Find answers to the most common questions about our project",
+      "questions": {
+        "availability": {
+          "question": "When will Cognicise be available?",
+          "answer": "We plan to launch Cognicise in May 2025, after completing all development and testing phases. Early Bird supporters will have early access during the beta testing phase in April.",
+          "earlyAccess": "Early Bird: Beta Access in April 2025"
+        },
+        "freeFeatures": {
+          "question": "Will the basic features always be free?",
+          "answer": "Yes, the basic features of exercises, reminders, and family contact will always be available for free. Our commitment is to keep cognitive care accessible to everyone.",
+          "guarantee": "Guaranteed basic features"
+        },
+        "devices": {
+          "question": "On which devices will it be available?",
+          "answer": "Cognicise will initially be available for iOS and Android devices. Additionally, Premium users will have access to our web platform for a complete experience from any device.",
+          "android": "Android",
+          "ios": "iOS"
+        }
+      },
+      "notFoundAnswer": {
+        "title": "Can't find your answer?",
+        "description": "Write to us and we will respond as soon as possible"
+      }
+    },
+    "contact": {
+      "title": "Connect with Cognicise",
+      "description": "Do you have questions about Cognicise or want to know more about how to support the project? We're here to help.",
+      "email": "Email",
+      "instagram": "Instagram",
+      "web": "Web"
+    },
+    "footer": {
+      "description": "Transforming cognitive care through innovative technology and family connection.",
+      "quickLinks": "Quick Links",
+      "whatIs": "What is Cognicise?",
+      "features": "Features",
+      "faq": "FAQ",
+      "joinWaitlist": "Join the waitlist",
+      "quickContact": "Quick Contact",
+      "comingSoon": "Coming soon on:",
+      "rights": "All rights reserved."
+    },
+    "waitlistModal": {
+      "title": "Join our waitlist",
+      "subtitle": "Be among the first to try Cognicise when it's available",
+      "form": {
+        "name": "Name (optional)",
+        "namePlaceholder": "Your name",
+        "email": "Email",
+        "emailPlaceholder": "example@email.com",
+        "interest": "What interests you most about Cognicise?",
+        "interestOptions": {
+          "all": "All features",
+          "predictive": "AI predictive analysis",
+          "earlyDetection": "Early detection of cognitive changes",
+          "personalizedExercises": "Personalized cognitive exercises",
+          "professionalPanel": "Professional panel"
+        },
+        "submitButton": "Join the waitlist",
+        "sending": "Sending...",
+        "tryAgain": "Try again",
+        "disclaimer": "By joining, you agree to receive exclusive updates about the launch"
+      },
+      "success": {
+        "title": "Thank you for joining!",
+        "message": "We'll contact you soon with news about Cognicise."
+      },
+      "errors": {
+        "requiredEmail": "Please enter a valid email",
+        "invalidEmail": "Please enter a valid email address",
+        "requiredName": "Please enter your name",
+        "connectionError": "Could not connect to the server. Please try again later.",
+        "genericError": "An error occurred. Please try again."
+      }
+    }
+  }

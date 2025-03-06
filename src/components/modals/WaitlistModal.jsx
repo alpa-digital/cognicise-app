@@ -1,13 +1,16 @@
 // WaitlistModal.jsx
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelopeOpenText, faTimes, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 const WaitlistModal = ({ isOpen, onClose }) => {
+  const { t, i18n } = useTranslation();
+  
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    interest: 'todas las funcionalidades'
+    interest: t('waitlistModal.form.interestOptions.all')
   });
   const [status, setStatus] = useState('idle'); // idle, loading, success, error
   const [errorMessage, setErrorMessage] = useState('');
@@ -23,7 +26,7 @@ const WaitlistModal = ({ isOpen, onClose }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.email) {
-      setErrorMessage('Por favor, introduce un email válido');
+      setErrorMessage(t('waitlistModal.errors.requiredEmail'));
       return;
     }
     
@@ -35,12 +38,18 @@ const WaitlistModal = ({ isOpen, onClose }) => {
       // Mostrar que se está haciendo la solicitud
       console.log('Sending request to waitlist API...');
       
+      // Obtener el idioma actual
+      const currentLanguage = i18n.language || 'es';
+      
       const response = await fetch('/.netlify/functions/waitlist', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          language: currentLanguage // Añadimos el idioma actual
+        }),
       });
       
       console.log('Response status:', response.status);
@@ -64,19 +73,19 @@ const WaitlistModal = ({ isOpen, onClose }) => {
           setFormData({
             name: '',
             email: '',
-            interest: 'todas las funcionalidades'
+            interest: t('waitlistModal.form.interestOptions.all')
           });
           setStatus('idle');
           onClose();
         }, 3000);
       } else {
         console.error('API reported error:', data.error);
-        setErrorMessage(data.error || 'Ocurrió un error. Por favor, inténtalo de nuevo.');
+        setErrorMessage(data.error || t('waitlistModal.errors.genericError'));
         setStatus('error');
       }
     } catch (error) {
       console.error('Error submitting to waitlist:', error);
-      setErrorMessage('No se pudo conectar con el servidor. Por favor, inténtalo de nuevo más tarde.');
+      setErrorMessage(t('waitlistModal.errors.connectionError'));
       setStatus('error');
     }
   };
@@ -100,10 +109,10 @@ const WaitlistModal = ({ isOpen, onClose }) => {
             <FontAwesomeIcon icon={faEnvelopeOpenText} className="text-primary text-2xl" />
           </div>
           <h3 className="text-2xl md:text-3xl font-bold font-volkhov text-secondary mb-3">
-            Únete a nuestra lista de espera
+            {t('waitlistModal.title')}
           </h3>
           <p className="text-accent font-poppins">
-            Sé de los primeros en probar Cognicise cuando esté disponible
+            {t('waitlistModal.subtitle')}
           </p>
         </div>
         
@@ -114,14 +123,14 @@ const WaitlistModal = ({ isOpen, onClose }) => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
               </svg>
             </div>
-            <h3 className="text-2xl font-bold text-secondary mb-4 font-volkhov">¡Gracias por unirte!</h3>
-            <p className="text-accent text-lg font-poppins">Te contactaremos pronto con novedades sobre Cognicise.</p>
+            <h3 className="text-2xl font-bold text-secondary mb-4 font-volkhov">{t('waitlistModal.success.title')}</h3>
+            <p className="text-accent text-lg font-poppins">{t('waitlistModal.success.message')}</p>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-secondary mb-2 font-poppins">
-                Nombre (opcional)
+                {t('waitlistModal.form.name')}
               </label>
               <input
                 type="text"
@@ -130,14 +139,14 @@ const WaitlistModal = ({ isOpen, onClose }) => {
                 value={formData.name}
                 onChange={handleChange}
                 className="w-full px-4 py-3 bg-gray-50 border-2 border-gray-100 focus:border-primary rounded-xl focus:outline-none transition-all duration-short ease-custom-ease font-poppins"
-                placeholder="Tu nombre"
+                placeholder={t('waitlistModal.form.namePlaceholder')}
                 disabled={status === 'loading'}
               />
             </div>
             
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-secondary mb-2 font-poppins">
-                Correo electrónico <span className="text-red-500">*</span>
+                {t('waitlistModal.form.email')} <span className="text-red-500">*</span>
               </label>
               <input
                 type="email"
@@ -146,7 +155,7 @@ const WaitlistModal = ({ isOpen, onClose }) => {
                 value={formData.email}
                 onChange={handleChange}
                 className="w-full px-4 py-3 bg-gray-50 border-2 border-gray-100 focus:border-primary rounded-xl focus:outline-none transition-all duration-short ease-custom-ease font-poppins"
-                placeholder="ejemplo@correo.com"
+                placeholder={t('waitlistModal.form.emailPlaceholder')}
                 disabled={status === 'loading'}
                 required
               />
@@ -154,7 +163,7 @@ const WaitlistModal = ({ isOpen, onClose }) => {
             
             <div>
               <label htmlFor="interest" className="block text-sm font-medium text-secondary mb-2 font-poppins">
-                ¿Qué te interesa más de Cognicise?
+                {t('waitlistModal.form.interest')}
               </label>
               <div className="relative">
                 <select 
@@ -165,11 +174,11 @@ const WaitlistModal = ({ isOpen, onClose }) => {
                   className="w-full px-4 py-3 bg-gray-50 border-2 border-gray-100 focus:border-primary rounded-xl focus:outline-none transition-all appearance-none duration-short ease-custom-ease font-poppins pr-10"
                   disabled={status === 'loading'}
                 >
-                  <option value="Todas las funcionalidades">Todas las funcionalidades</option>
-                  <option value="Análisis Predictivo">Análisis predictivo con IA</option>
-                  <option value="Detección Precoz">Detección precoz de cambios cognitivos</option>
-                  <option value="Ejercitación Personalizada">Ejercitación cognitiva personalizada</option>
-                  <option value="Panel Profesional">Panel para profesionales</option>
+                  <option value={t('waitlistModal.form.interestOptions.all')}>{t('waitlistModal.form.interestOptions.all')}</option>
+                  <option value={t('waitlistModal.form.interestOptions.predictive')}>{t('waitlistModal.form.interestOptions.predictive')}</option>
+                  <option value={t('waitlistModal.form.interestOptions.earlyDetection')}>{t('waitlistModal.form.interestOptions.earlyDetection')}</option>
+                  <option value={t('waitlistModal.form.interestOptions.personalizedExercises')}>{t('waitlistModal.form.interestOptions.personalizedExercises')}</option>
+                  <option value={t('waitlistModal.form.interestOptions.professionalPanel')}>{t('waitlistModal.form.interestOptions.professionalPanel')}</option>
                 </select>
                 <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                   <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -191,9 +200,9 @@ const WaitlistModal = ({ isOpen, onClose }) => {
                 disabled={status === 'loading'}
                 className="w-full bg-primary text-white px-6 py-3 rounded-xl font-semibold hover:bg-primary/90 transition-all transform hover:scale-105 duration-short ease-custom-ease flex items-center justify-center gap-2 shadow-lg shadow-primary/20 disabled:opacity-70 disabled:hover:scale-100"
               >
-                {status === 'loading' ? 'Enviando...' :
-                 status === 'error' ? 'Intentar de nuevo' : 
-                 'Unirme a la lista de espera'}
+                {status === 'loading' ? t('waitlistModal.form.sending') :
+                 status === 'error' ? t('waitlistModal.form.tryAgain') : 
+                 t('waitlistModal.form.submitButton')}
                 
                 {status === 'idle' && <FontAwesomeIcon icon={faArrowRight} />}
               </button>
@@ -204,7 +213,7 @@ const WaitlistModal = ({ isOpen, onClose }) => {
                 <svg className="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                Al unirte, aceptas recibir actualizaciones exclusivas sobre el lanzamiento
+                {t('waitlistModal.form.disclaimer')}
               </p>
             </div>
           </form>

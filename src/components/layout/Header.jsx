@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Logo from '../../assets/img/cognicise-logo.png';
-import enflag from '../../assets/img/en-flag.png';
+import LanguageSwitcher from '../common/LanguageSwitcher';
 import WaitlistModal from '../modals/WaitlistModal';
 
 const Header = () => {
+  const { t } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -52,25 +54,13 @@ const Header = () => {
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-8">
-              <Link to="/en" className="text-secondary hover:text-[#00C29D] transition-colors flex items-center gap-2">
-                <img 
-                  src={enflag}
-                  alt="English version" 
-                  className="w-6 h-4 rounded shadow-sm" 
-                />
-              </Link>
-              {/*<Link to="#que-es-cognicise" className="text-secondary hover:text-[#00C29D] transition-colors">
-                ¿Qué es Cognicise?
-              </Link>
-              <Link to="#funcionalidades" className="text-secondary hover:text-[#00C29D] transition-colors">
-                Funcionalidades
-              </Link>*/}
+              <LanguageSwitcher />
               
               <button 
                 onClick={openModal}
                 className="bg-[#00C29D] text-white px-6 py-2 rounded-lg hover:bg-[#00C29D]/90 transition-all transform hover:scale-105"
               >
-                Únete a la waitlist
+                {t('header.joinWaitlist')}
               </button>
             </div>
 
@@ -121,32 +111,7 @@ const Header = () => {
             {/* Mobile Menu Links */}
             <nav className="px-6 py-8">
               <div className="flex flex-col space-y-6">
-                <Link 
-                  to="/en" 
-                  className="text-xl font-medium text-secondary hover:text-[#00C29D] transition-colors flex items-center gap-2"
-                  onClick={toggleMenu}
-                >
-                  <img 
-                    src={enflag}
-                    alt="English version" 
-                    className="w-6 h-4 rounded shadow-sm" 
-                  />
-                  English version
-                </Link>
-                {/*<Link 
-                  to="#que-es-cognicise" 
-                  className="text-xl font-medium text-secondary hover:text-[#00C29D] transition-colors"
-                  onClick={toggleMenu}
-                >
-                  ¿Qué es Cognicise?
-                </Link>
-                <Link 
-                  to="#funcionalidades" 
-                  className="text-xl font-medium text-secondary hover:text-[#00C29D] transition-colors"
-                  onClick={toggleMenu}
-                >
-                  Funcionalidades
-                </Link>*/}
+                <LanguageSwitcher onChangeLanguage={() => toggleMenu()} />
               </div>
 
               {/* CTA Mobile */}
@@ -155,7 +120,7 @@ const Header = () => {
                   onClick={openModal}
                   className="block w-full bg-[#00C29D] text-white px-6 py-3 rounded-lg text-center font-medium hover:bg-[#00C29D]/90 transition-all"
                 >
-                  Únete a la waitlist
+                  {t('header.joinWaitlist')}
                 </button>
               </div>
             </nav>

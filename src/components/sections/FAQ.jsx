@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
   faCalendarAlt, 
@@ -55,6 +56,7 @@ const FAQItem = ({ question, icon, children, index, activeIndex, setActiveIndex 
 };
 
 const FAQ = () => {
+  const { t } = useTranslation();
   const [activeIndex, setActiveIndex] = useState(null);
   
   return (
@@ -62,13 +64,13 @@ const FAQ = () => {
       <div className="container mx-auto px-padding-small md:px-padding-big">
         <div className="max-w-3xl mx-auto text-center mb-16 section-text-div">
           <span className="highlight-badge inline-block text-primary font-semibold tracking-wide uppercase bg-primary/5 px-4 py-2 rounded-full mb-6" data-aos="fade-up">
-            PREGUNTAS FRECUENTES
+            {t('faq.badge')}
           </span>
           <h2 className="text-4xl md:text-5xl font-bold font-figtree text-secondary mb-6" data-aos="fade-up">
-            ¿Tienes dudas sobre Cognicise?
+            {t('faq.title')}
           </h2>
           <p className="text-lg text-accent font-montserrat" data-aos="fade-up">
-            Encuentra respuestas a las preguntas más comunes sobre nuestro proyecto
+            {t('faq.description')}
           </p>
         </div>
 
@@ -80,36 +82,36 @@ const FAQ = () => {
             <div className="space-y-6">
               {/* FAQ 1 */}
               <FAQItem 
-                question="¿Cuándo estará disponible Cognicise?" 
+                question={t('faq.questions.availability.question')}
                 icon="calendar-alt"
                 index={0}
                 activeIndex={activeIndex}
                 setActiveIndex={setActiveIndex}
               >
                 <p className="leading-relaxed">
-                  Planeamos lanzar Cognicise en mayo de 2025, tras completar todas las fases de desarrollo y pruebas. Los mecenas Early Bird tendrán acceso anticipado durante la fase de pruebas en abril.
+                  {t('faq.questions.availability.answer')}
                 </p>
                 <div className="flex items-center gap-2 mt-4 text-sm">
                   <FontAwesomeIcon icon={faInfoCircle} className="text-primary" />
-                  <span className="text-primary">Early Bird: Acceso Beta en Abril 2025</span>
+                  <span className="text-primary">{t('faq.questions.availability.earlyAccess')}</span>
                 </div>
               </FAQItem>
 
               {/* FAQ 2 */}
               <FAQItem 
-                question="¿Las funciones básicas serán siempre gratuitas?" 
+                question={t('faq.questions.freeFeatures.question')}
                 icon="gift"
                 index={1}
                 activeIndex={activeIndex}
                 setActiveIndex={setActiveIndex}
               >
                 <p className="leading-relaxed">
-                  Sí, las funcionalidades básicas de ejercitación, recordatorios y contacto con familiares siempre estarán disponibles de forma gratuita. Nuestro compromiso es mantener el cuidado cognitivo accesible para todos.
+                  {t('faq.questions.freeFeatures.answer')}
                 </p>
                 <div className="bg-primary/5 rounded-xl p-4 mt-4">
                   <div className="flex items-center gap-2 text-sm">
                     <FontAwesomeIcon icon={faCheckCircle} className="text-primary" />
-                    <span className="text-primary font-medium">Funcionalidades básicas garantizadas</span>
+                    <span className="text-primary font-medium">{t('faq.questions.freeFeatures.guarantee')}</span>
                   </div>
                 </div>
               </FAQItem>
@@ -119,23 +121,23 @@ const FAQ = () => {
             <div className="space-y-6">
               {/* FAQ 3 */}
               <FAQItem 
-                question="¿En qué dispositivos estará disponible?" 
+                question={t('faq.questions.devices.question')}
                 icon="mobile-alt"
                 index={2}
                 activeIndex={activeIndex}
                 setActiveIndex={setActiveIndex}
               >
                 <p className="leading-relaxed">
-                  Cognicise estará disponible inicialmente para dispositivos iOS y Android. Además, los usuarios Premium tendrán acceso a nuestra plataforma web para una experiencia completa desde cualquier dispositivo.
+                  {t('faq.questions.devices.answer')}
                 </p>
                 <div className="grid grid-cols-2 gap-4 mt-4">
                   <div className="flex items-center gap-2 text-sm">
                     <FontAwesomeIcon icon={faAndroid} className="text-primary" />
-                    <span>Android</span>
+                    <span>{t('faq.questions.devices.android')}</span>
                   </div>
                   <div className="flex items-center gap-2 text-sm">
                     <FontAwesomeIcon icon={faApple} className="text-primary" />
-                    <span>iOS</span>
+                    <span>{t('faq.questions.devices.ios')}</span>
                   </div>
                 </div>
               </FAQItem>
@@ -148,8 +150,12 @@ const FAQ = () => {
               <div className="flex items-center justify-center w-12 h-12 bg-primary/20 rounded-xl mx-auto mb-4">
                 <FontAwesomeIcon icon={faEnvelope} className="text-primary" />
               </div>
-              <h4 className="text-xl font-semibold text-secondary mb-2 font-montserrat">¿No encuentras tu respuesta?</h4>
-              <p className="text-accent mb-6 font-montserrat">Escríbenos y te responderemos lo antes posible</p>
+              <h4 className="text-xl font-semibold text-secondary mb-2 font-montserrat">
+                {t('faq.notFoundAnswer.title')}
+              </h4>
+              <p className="text-accent mb-6 font-montserrat">
+                {t('faq.notFoundAnswer.description')}
+              </p>
             </div>
           </div>
         </div>
