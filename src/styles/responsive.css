@@ -1,0 +1,190 @@
+/* src/styles/responsive.css */
+
+/* Definición de breakpoints consistentes */
+:root {
+    --screen-sm: 640px;
+    --screen-md: 768px;
+    --screen-lg: 1024px;
+    --screen-xl: 1280px;
+  }
+  
+  /* Texto responsivo */
+  .responsive-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+    overflow: visible;
+  }
+  
+  @media (min-width: 768px) {
+    .responsive-text {
+      font-size: 1.125rem;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .responsive-text {
+      font-size: 1.25rem;
+    }
+  }
+  
+  /* Encabezados responsivos */
+  .responsive-heading {
+    font-size: 1.75rem;
+    line-height: 1.2;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+  }
+  
+  @media (min-width: 768px) {
+    .responsive-heading {
+      font-size: 2.25rem;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .responsive-heading {
+      font-size: 3rem;
+    }
+  }
+  
+  /* Contenedores para secciones principales */
+  .section-container {
+    padding: 3rem 1rem;
+    overflow: hidden;
+    width: 100%;
+  }
+  
+  @media (min-width: 768px) {
+    .section-container {
+      padding: 4rem 2rem;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .section-container {
+      padding: 5rem 2rem;
+    }
+  }
+  
+  /* Cards y elementos de contenido */
+  .content-card {
+    background-color: white;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+  }
+  
+  @media (min-width: 768px) {
+    .content-card {
+      padding: 1.5rem;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .content-card {
+      padding: 2rem;
+    }
+  }
+  
+  /* Botones responsivos */
+  .btn-primary {
+    width: 100%;
+    background-color: #00C29D;
+    color: white;
+    font-weight: 500;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  
+  .btn-primary:hover {
+    background-color: rgba(0, 194, 157, 0.9);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .btn-primary:active {
+    transform: scale(0.98);
+  }
+  
+  @media (min-width: 640px) {
+    .btn-primary {
+      width: auto;
+    }
+  }
+  
+  /* Contenedor para gráficos responsivos */
+  .responsive-graph-container {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+    margin-left: -1rem;
+    margin-right: -1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .responsive-graph-content {
+    min-width: 480px;
+  }
+  
+  /* Utilities específicos para móvil */
+  @media (max-width: 640px) {
+    .hide-on-mobile {
+      display: none !important;
+    }
+    
+    .stack-on-mobile {
+      flex-direction: column !important;
+    }
+    
+    .center-on-mobile {
+      text-align: center !important;
+      justify-content: center !important;
+    }
+    
+    .full-width-on-mobile {
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+    
+    .smaller-text-on-mobile {
+      font-size: 0.875rem !important;
+    }
+    
+    .smaller-heading-on-mobile {
+      font-size: 1.5rem !important;
+    }
+  }
+  
+  /* Menú móvil */
+  .mobile-menu {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    min-height: 100vh;
+    background-color: white;
+    z-index: 50;
+    transition: transform 0.3s ease;
+  }
+  
+  .mobile-menu.hidden {
+    transform: translateX(-100%);
+  }
+  
+  .mobile-menu.visible {
+    transform: translateX(0);
+  }

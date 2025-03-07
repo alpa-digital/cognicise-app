@@ -91,3 +91,99 @@
   border-radius: 100%;
   filter: blur(15px);
 }
+
+/* Mobile-first responsive adjustments */
+@media (max-width: 768px) {
+  /* General spacing adjustments */
+  section {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  
+  /* Image containers for better mobile display */
+  .img-hover {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  
+  /* Smaller headings on mobile */
+  h1 {
+    font-size: 2.25rem;
+    line-height: 1.2;
+  }
+  
+  h2 {
+    font-size: 1.875rem;
+    line-height: 1.3;
+  }
+  
+  /* Adjust feature cards padding */
+  .feature-card {
+    padding: 1.25rem;
+  }
+  
+  /* Stack items in columns on mobile */
+  .flex-row-reverse-md {
+    flex-direction: column-reverse;
+  }
+  
+  /* Fix overlapping badges on mobile */
+  .highlight-badge {
+    font-size: 0.75rem;
+    padding: 0.5rem 0.75rem;
+  }
+  
+  /* Button adjustments for smaller screens */
+  .primary-button, .outline-button {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    font-size: 0.875rem;
+  }
+  
+  /* Header mobile adjustments */
+  #mobile-menu {
+    width: 100%;
+    min-height: 100vh;
+  }
+  
+  /* Footer adjustments */
+  footer .grid {
+    gap: 2rem;
+  }
+}
+
+/* Container padding fixes */
+.container {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+
+/* Fix for modal on mobile */
+.fixed.inset-0 {
+  width: 100%;
+}
+
+/* Ensure images don't overflow their containers */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Fix for overlapping sections */
+section {
+  overflow-x: hidden;
+}

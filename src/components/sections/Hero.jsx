@@ -1,7 +1,7 @@
+// src/components/sections/Hero.jsx
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import mockupBanner from '../../assets/img/nuevo-mockups-banner-2.png';
-import greenLine from '../../assets/img/green-line.png';
 import WaitlistModal from '../modals/WaitlistModal';
 
 const Hero = () => {
@@ -18,39 +18,41 @@ const Hero = () => {
 
   return (
     <>
-      <section id="que-es-cognicise" className="pt-32 pb-20 px-8 relative overflow-hidden">
-        <div className="container mx-auto px-padding-small md:px-padding-big">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            {/* Contenido izquierdo */}
-            <div data-aos="fade-right" className="section-text-div flex flex-col items-start gap-8">
-              <span className="text-primary font-bold tracking-wide uppercase font-montserrat font-subtitles" id="alt-highlight-text">
+      <section id="que-es-cognicise" className="pt-24 md:pt-32 pb-12 md:pb-20 px-4 md:px-8 relative overflow-hidden">
+        <div className="container mx-auto">
+          {/* Reversed order on mobile, normal on desktop */}
+          <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-center">
+            {/* Content */}
+            <div 
+              data-aos="fade-right" 
+              className="order-2 md:order2 w-full md:w-1/2 flex flex-col items-start gap-6"
+            >
+              <span className="text-primary font-bold tracking-wide uppercase text-sm md:text-base" id="alt-highlight-text">
                 {t('hero.tagline')}
               </span>
 
-              <h1 className="text-6xl md:text-6xl lg:text-6xl font-bold font-figtree">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-figtree">
                 {t('hero.title')}
               </h1>
 
-              <p className="text-accent text-lg mb-0 max-w-4/5" id="main-subtitle">
+              <p className="text-accent text-base md:text-lg max-w-full break-words" id="main-subtitle">
                 {t('hero.description')}
               </p>
 
-              <div className="space-y-6 w-full" id="button-demo-part">
-                <div className="flex flex-col">
-                  <button 
-                    onClick={openModal}
-                    className="primary-button text-center" 
-                    id="find-out-more-button"
-                  >
-                    {t('hero.joinWaitlist')}
-                  </button>
-                  
-                </div>
-
-                <div className="flex flex-wrap gap-4 text-sm text-accent">
-                  <div className="flex items-center bg-primary/5 px-4 py-2 rounded-full">
+              <div className="w-full space-y-4 md:space-y-6" id="button-demo-part">
+                <button 
+                  onClick={openModal}
+                  className="w-full sm:w-auto bg-primary text-white px-6 py-3 rounded-lg font-semibold 
+                  hover:bg-primary/90 transition-all transform hover:scale-105 shadow-md text-center"
+                  id="find-out-more-button"
+                >
+                  {t('hero.joinWaitlist')}
+                </button>
+                
+                <div className="flex flex-wrap gap-3 text-sm text-accent">
+                  <div className="flex items-center bg-primary/5 px-3 py-2 rounded-full">
                     <svg 
-                      className="w-5 h-5 text-primary mr-2" 
+                      className="w-4 h-4 text-primary mr-2 flex-shrink-0" 
                       fill="none" 
                       viewBox="0 0 24 24" 
                       stroke="currentColor"
@@ -62,11 +64,11 @@ const Hero = () => {
                         d="M5 13l4 4L19 7"
                       />
                     </svg>
-                    {t('hero.badges.earlyBird')}
+                    <span className="whitespace-nowrap">{t('hero.badges.earlyBird')}</span>
                   </div>
-                  <div className="flex items-center bg-primary/5 px-4 py-2 rounded-full">
+                  <div className="flex items-center bg-primary/5 px-3 py-2 rounded-full">
                     <svg 
-                      className="w-5 h-5 text-primary mr-2" 
+                      className="w-4 h-4 text-primary mr-2 flex-shrink-0" 
                       fill="none" 
                       viewBox="0 0 24 24" 
                       stroke="currentColor"
@@ -78,19 +80,24 @@ const Hero = () => {
                         d="M5 13l4 4L19 7"
                       />
                     </svg>
-                    {t('hero.badges.freeFeatures')}
+                    <span className="whitespace-nowrap">{t('hero.badges.freeFeatures')}</span>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Contenido derecho - Mockups */}
-            <div className="relative img-div" data-aos="fade-left">
-              <img 
-                src={mockupBanner} 
-                alt="Cognicise App" 
-                className="w-full max-w-xl mx-auto img-hover mockup-img"
-              />
+            {/* Mockups - Order first on mobile, second on desktop */}
+            <div 
+              className="order-2 md:order-2 w-full md:w-1/2 flex justify-center" 
+              data-aos="fade-left"
+            >
+              <div className="max-w-sm md:max-w-full mx-auto">
+                <img 
+                  src={mockupBanner} 
+                  alt="Cognicise App" 
+                  className="w-full h-auto object-contain img-hover mockup-img"
+                />
+              </div>
             </div>
           </div>
         </div>

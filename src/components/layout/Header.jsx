@@ -1,12 +1,14 @@
+// src/components/layout/Header.jsx
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Logo from '../../assets/img/cognicise-logo.png';
-import LanguageSwitcher from '../common/LanguageSwitcher';
+import enflag from '../../assets/img/en-flag.png';
+import esflag from '../../assets/img/es-flag.png'; // Asegúrate de tener esta imagen
 import WaitlistModal from '../modals/WaitlistModal';
 
 const Header = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -36,15 +38,29 @@ const Header = () => {
     setIsModalOpen(false);
   };
 
+  const changeLanguage = () => {
+    const newLang = i18n.language === 'es' ? 'en' : 'es';
+    i18n.changeLanguage(newLang);
+    
+    // Actualizar la URL para reflejar el cambio de idioma
+    const currentPath = window.location.pathname;
+    const newPath = currentPath.replace(/^\/(es|en)/, `/${newLang}`);
+    window.history.pushState({}, '', newPath);
+  };
+
+  // Determina qué bandera mostrar según el idioma actual
+  const currentFlag = i18n.language === 'es' ? enflag : esflag;
+  const flagAlt = i18n.language === 'es' ? 'English version' : 'Versión en español';
+
   return (
     <>
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white/80 backdrop-blur-sm border-b border-gray-100' : 'bg-transparent'
+        isScrolled ? 'bg-white/90 backdrop-blur-sm border-b border-gray-100 shadow-sm' : 'bg-transparent'
       }`}>
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4">
           <nav className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
-            <Link to="/" className="relative z-10">
+            <Link to="/" className="relative z-10 flex-shrink-0">
               <img 
                 src={Logo} 
                 alt="Cognicise" 
@@ -54,11 +70,22 @@ const Header = () => {
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-8">
-              <LanguageSwitcher />
+              <button 
+                onClick={changeLanguage} 
+                className="text-secondary hover:text-primary transition-colors flex items-center gap-2"
+                aria-label={`Switch to ${i18n.language === 'es' ? 'English' : 'Spanish'}`}
+              >
+                <img 
+                  src={currentFlag}
+                  alt={flagAlt} 
+                  className="w-6 h-4 rounded shadow-sm" 
+                />
+                <span>{t('header.englishVersion')}</span>
+              </button>
               
               <button 
                 onClick={openModal}
-                className="bg-[#00C29D] text-white px-6 py-2 rounded-lg hover:bg-[#00C29D]/90 transition-all transform hover:scale-105"
+                className="bg-primary text-white px-6 py-2 rounded-lg hover:bg-primary/90 transition-all transform hover:scale-105 shadow-sm hover:shadow-md"
               >
                 {t('header.joinWaitlist')}
               </button>
@@ -68,13 +95,16 @@ const Header = () => {
             <button 
               type="button" 
               id="menu-toggle"
-              className="lg:hidden relative z-[60] p-2 text-secondary hover:text-[#00C29D] transition-colors"
-              aria-label="Menu"
+              className="lg:hidden relative z-[60] p-2 text-secondary hover:text-primary transition-colors"
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
               onClick={toggleMenu}
               aria-expanded={isMenuOpen}
             >
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"/>
+              <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                {isMenuOpen 
+                  ? <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"/>
+                  : <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"/>
+                }
               </svg>
             </button>
           </nav>
@@ -86,11 +116,11 @@ const Header = () => {
           className={`fixed inset-0 w-full min-h-screen bg-white transition-transform duration-300 lg:hidden z-50 ${
             isMenuOpen ? 'translate-x-0' : '-translate-x-full'
           }`}
-          style={{ minHeight: '100vh', background: 'white !important' }}
+          style={{ minHeight: '100vh' }}
         >
-          <div className="relative h-full">
+          <div className="relative h-full flex flex-col">
             {/* Mobile Menu Header */}
-            <div className="flex items-center justify-between p-6">
+            <div className="flex items-center justify-between p-4 border-b">
               <img 
                 src={Logo}
                 alt="Cognicise" 
@@ -98,27 +128,59 @@ const Header = () => {
               />
               <button 
                 type="button"
-                className="p-2 text-secondary hover:text-[#00C29D] transition-colors"
+                className="p-2 text-secondary hover:text-primary transition-colors"
                 onClick={toggleMenu}
                 aria-label="Cerrar menu"
               >
-                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"/>
-                </svg>
+                
               </button>
             </div>
 
             {/* Mobile Menu Links */}
-            <nav className="px-6 py-8">
+            <nav className="flex-1 px-4 py-6 overflow-y-auto">
               <div className="flex flex-col space-y-6">
-                <LanguageSwitcher onChangeLanguage={() => toggleMenu()} />
+                <button 
+                  onClick={() => {
+                    changeLanguage();
+                    toggleMenu();
+                  }} 
+                  className="flex items-center gap-3 py-2 text-lg font-medium text-secondary hover:text-primary transition-colors"
+                >
+                  <img 
+                    src={currentFlag}
+                    alt={flagAlt} 
+                    className="w-6 h-4 rounded shadow-sm" 
+                  />
+                  <span>{t('header.englishVersion')}</span>
+                </button>
+                
+                <a href="#que-es-cognicise" 
+                   onClick={toggleMenu}
+                   className="py-2 text-lg font-medium text-secondary hover:text-primary transition-colors">
+                  {t('footer.whatIs')}
+                </a>
+                
+                <a href="#funcionalidades" 
+                   onClick={toggleMenu}
+                   className="py-2 text-lg font-medium text-secondary hover:text-primary transition-colors">
+                  {t('footer.features')}
+                </a>
+                
+                <a href="#faq" 
+                   onClick={toggleMenu}
+                   className="py-2 text-lg font-medium text-secondary hover:text-primary transition-colors">
+                  {t('footer.faq')}
+                </a>
               </div>
 
               {/* CTA Mobile */}
-              <div className="mt-8">
+              <div className="mt-8 pt-6 border-t border-gray-100">
                 <button 
-                  onClick={openModal}
-                  className="block w-full bg-[#00C29D] text-white px-6 py-3 rounded-lg text-center font-medium hover:bg-[#00C29D]/90 transition-all"
+                  onClick={() => {
+                    openModal();
+                    toggleMenu();
+                  }}
+                  className="w-full bg-primary text-white px-6 py-3 rounded-lg text-center font-medium hover:bg-primary/90 transition-all shadow-sm"
                 >
                   {t('header.joinWaitlist')}
                 </button>
