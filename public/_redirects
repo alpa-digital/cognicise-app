@@ -1,0 +1,15 @@
+# Redirecciones de Netlify (respaldo del netlify.toml)
+
+# Redirección de API para funciones serverless
+/api/*  /.netlify/functions/:splat  200
+
+# Redirección para URLs antiguas
+/index.html  /es/  301
+/  /es/  302
+
+# Redirecciones para SPA
+/es/*  /index.html  200
+/en/*  /index.html  200
+
+# Fallback para cualquier otra ruta
+/*  /es/:splat  302

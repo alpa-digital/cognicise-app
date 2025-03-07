@@ -6,7 +6,51 @@
 [functions]
   node_bundler = "esbuild"
 
+# Redirección de API para funciones serverless
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/:splat"
   status = 200
+
+# Redirección basada en idioma (detecta español)
+[[redirects]]
+  from = "/*"
+  to = "/es/:splat"
+  status = 302
+  conditions = {Language = ["es"]}
+
+# Redirección basada en idioma (detecta inglés)
+[[redirects]]
+  from = "/*"
+  to = "/en/:splat"
+  status = 302
+  conditions = {Language = ["en"]}
+
+# Redirección para URLs antiguas (asume que vienen de la versión española)
+[[redirects]]
+  from = "/index.html"
+  to = "/es/"
+  status = 301
+
+# Redirecciones para rutas específicas de SPA
+[[redirects]]
+  from = "/es/*"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/en/*"
+  to = "/index.html"
+  status = 200
+
+# Redirección por defecto (si no se detecta ningún idioma, usa español)
+[[redirects]]
+  from = "/*"
+  to = "/es/:splat"
+  status = 302
+
+# Encabezados para limpiar cache y evitar problemas de caché
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"

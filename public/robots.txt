@@ -1,3 +1,12 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+
+# Permitir acceso a todas las rutas
+Allow: /
+
+# Permitir acceso específico a rutas con prefijos de idioma
+Allow: /es/
+Allow: /en/
+
+# Especificar el sitemap
+Sitemap: https://cognicise.app/sitemap.xml

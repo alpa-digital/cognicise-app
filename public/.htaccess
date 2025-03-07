@@ -1,0 +1,41 @@
+# Activar el motor de reescritura
+RewriteEngine On
+
+# Redirigir todas las peticiones que no sean a archivos o directorios existentes
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Manejar las rutas de los prefijos de idioma
+RewriteRule ^es/(.*) /index.html [L]
+RewriteRule ^en/(.*) /index.html [L]
+
+# Redirigir la raíz a la versión en español por defecto
+RewriteRule ^$ /es/ [R=302,L]
+
+# Configuración de encabezados para evitar caché
+<IfModule mod_headers.c>
+    # Desactivar caché para HTML
+    <FilesMatch "\.html$">
+        Header set Cache-Control "no-cache, no-store, must-revalidate"
+        Header set Pragma "no-cache"
+        Header set Expires "0"
+    </FilesMatch>
+    
+    # Desactivar caché para los archivos JS y CSS que contienen hash
+    <FilesMatch "\.(js|css)$">
+        Header set Cache-Control "max-age=31536000, public"
+    </FilesMatch>
+    
+    # Establecer encabezados de seguridad
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set X-Frame-Options "SAMEORIGIN"
+</IfModule>
+
+# Comprimir archivos estáticos
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/javascript application/json
+</IfModule>
+
+# Manejo de errores
+ErrorDocument 404 /index.html
