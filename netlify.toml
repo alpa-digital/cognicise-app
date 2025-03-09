@@ -12,6 +12,27 @@
   to = "/.netlify/functions/:splat"
   status = 200
 
+# Redirecciones específicas de URL
+[[redirects]]
+  from = "/"
+  to = "/es"
+  status = 301
+
+[[redirects]]
+  from = "/home"
+  to = "/en"
+  status = 301
+
+[[redirects]]
+  from = "/producto"
+  to = "/es"
+  status = 301
+
+[[redirects]]
+  from = "/product"
+  to = "/en"
+  status = 301
+
 # Redirección basada en idioma (detecta español)
 [[redirects]]
   from = "/*"
