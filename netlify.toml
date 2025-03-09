@@ -92,6 +92,12 @@
   to = "/es/:splat"
   status = 302
 
+[[redirects]]
+  from = "http://*"
+  to = "https://:splat"
+  status = 301
+  force = true
+
 # Encabezados para limpiar cache y evitar problemas de caché
 [[headers]]
   for = "/*"
