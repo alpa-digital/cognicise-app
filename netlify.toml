@@ -53,6 +53,28 @@
   to = "/es/"
   status = 301
 
+# Redirecciones para páginas de términos y privacidad en español
+[[redirects]]
+  from = "/es/terms"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/es/privacy"
+  to = "/index.html"
+  status = 200
+
+# Redirecciones para páginas de términos y privacidad en inglés
+[[redirects]]
+  from = "/en/terms"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/en/privacy"
+  to = "/index.html"
+  status = 200
+
 # Redirecciones para rutas específicas de SPA
 [[redirects]]
   from = "/es/*"

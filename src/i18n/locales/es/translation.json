@@ -125,14 +125,16 @@
       "web": "Web"
     },
     "footer": {
-      "description": "Transformando el cuidado cognitivo mediante tecnología innovadora y conexión familiar.",
-      "quickLinks": "Links Rápidos",
+      "description": "Plataforma de monitorización neurocognitiva con análisis predictivo para profesionales de la salud. Mejora el diagnóstico temprano y el tratamiento de trastornos cognitivos.",
+      "quickLinks": "Enlaces rápidos",
       "whatIs": "¿Qué es Cognicise?",
       "features": "Funcionalidades",
       "faq": "Preguntas frecuentes",
-      "joinWaitlist": "Únete a la lista de espera",
-      "quickContact": "Contacto Rápido",
-      "comingSoon": "Próximamente en:",
+      "joinWaitlist": "Unirse a la lista de espera",
+      "terms": "Términos y condiciones",
+      "privacy": "Política de privacidad",
+      "quickContact": "Contacto",
+      "comingSoon": "Próximamente",
       "rights": "Todos los derechos reservados."
     },
     "waitlistModal": {

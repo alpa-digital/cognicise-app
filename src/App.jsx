@@ -13,6 +13,8 @@ import WaitlistForm from './components/sections/WaitlistForm';
 import Contact from './components/sections/Contact';
 import CTASection from './components/sections/CTASection';
 import MetaHelmet from './components/MetaHelmet';
+import TermsPage from './pages/TermsPage';
+import PrivacyPage from './pages/PrivacyPage';
 
 // Importar AOS para animaciones
 import AOS from 'aos';
@@ -61,7 +63,17 @@ function App() {
     <Router>
       <div className="font-montserrat">
         <Routes>
-          {/* Rutas con prefijo de idioma */}
+          {/* Rutas con prefijo de idioma para la página principal */}
+          <Route path="/es" element={<MainPage />} />
+          <Route path="/en" element={<MainPage />} />
+          
+          {/* Páginas de términos y privacidad */}
+          <Route path="/es/terms" element={<TermsPage />} />
+          <Route path="/en/terms" element={<TermsPage />} />
+          <Route path="/es/privacy" element={<PrivacyPage />} />
+          <Route path="/en/privacy" element={<PrivacyPage />} />
+          
+          {/* Mantener las rutas originales con wildcard para otras páginas */}
           <Route path="/es/*" element={<MainPage />} />
           <Route path="/en/*" element={<MainPage />} />
           

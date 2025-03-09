@@ -1,16 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
-  faEnvelope, 
-  faGlobe,
-  faMapMarkerAlt,
-  faPhone
+  faEnvelope
 } from '@fortawesome/free-solid-svg-icons';
 import { 
   faInstagram, 
-  faXTwitter, 
-  faFacebook,
   faLinkedin,
   faApple,
   faGooglePlay
@@ -18,8 +14,9 @@ import {
 import Logo from '../../assets/img/cognicise-logo.png';
 
 const Footer = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const currentYear = new Date().getFullYear();
+  const currentLang = i18n.language || 'es';
 
   return (
     <footer className="bg-gray-900 px-8 text-white pt-20">
@@ -36,19 +33,11 @@ const Footer = () => {
             
             {/* Redes sociales */}
             <div className="flex space-x-4 mt-8" id="social-icons">
-              <a href="https://instagram.com/cognicise.app" target="_blank" rel="noopener noreferrer" 
+              <a href="https://www.instagram.com/cognicise.app/" target="_blank" rel="noopener noreferrer" 
                  className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary/20 transition-colors duration-short">
                 <FontAwesomeIcon icon={faInstagram} className="text-gray-300 hover:text-primary transition-colors" />
               </a>
-              <a href="#" target="_blank" rel="noopener noreferrer"
-                 className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary/20 transition-colors duration-short">
-                <FontAwesomeIcon icon={faXTwitter} className="text-gray-300 hover:text-primary transition-colors" />
-              </a>
-              <a href="#" target="_blank" rel="noopener noreferrer"
-                 className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary/20 transition-colors duration-short">
-                <FontAwesomeIcon icon={faFacebook} className="text-gray-300 hover:text-primary transition-colors" />
-              </a>
-              <a href="#" target="_blank" rel="noopener noreferrer"
+              <a href="https://www.linkedin.com/company/cognicise" target="_blank" rel="noopener noreferrer"
                  className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary/20 transition-colors duration-short">
                 <FontAwesomeIcon icon={faLinkedin} className="text-gray-300 hover:text-primary transition-colors" />
               </a>
@@ -59,25 +48,16 @@ const Footer = () => {
           <div className="footer-part footer-02">
             <h3 className="font-semibold text-lg mb-6 font-figtree">{t('footer.quickLinks')}</h3>
             <ul className="space-y-4">
+           
               <li>
-                <a href="#que-es-cognicise" className="text-gray-400 hover:text-primary transition-colors font-montserrat">
-                  {t('footer.whatIs')}
-                </a>
+                <Link to={`/${currentLang}/terms`} className="text-gray-400 hover:text-primary transition-colors font-montserrat">
+                  {t('footer.terms')}
+                </Link>
               </li>
               <li>
-                <a href="#funcionalidades" className="text-gray-400 hover:text-primary transition-colors font-montserrat">
-                  {t('footer.features')}
-                </a>
-              </li>
-              <li>
-                <a href="#faq" className="text-gray-400 hover:text-primary transition-colors font-montserrat">
-                  {t('footer.faq')}
-                </a>
-              </li>
-              <li>
-                <a href="#waitlist" className="text-gray-400 hover:text-primary transition-colors font-montserrat">
-                  {t('footer.joinWaitlist')}
-                </a>
+                <Link to={`/${currentLang}/privacy`} className="text-gray-400 hover:text-primary transition-colors font-montserrat">
+                  {t('footer.privacy')}
+                </Link>
               </li>
             </ul>
           </div>
@@ -88,8 +68,8 @@ const Footer = () => {
             <ul className="space-y-4">
               <li className="flex items-center gap-3">
                 <FontAwesomeIcon icon={faEnvelope} className="text-primary" />
-                <a href="mailto:cogniciseapp@gmail.com" className="text-gray-400 hover:text-primary transition-colors font-montserrat">
-                  cogniciseapp@gmail.com
+                <a href="mailto:info@cognicise.app" className="text-gray-400 hover:text-primary transition-colors font-montserrat">
+                  info@cognicise.app
                 </a>
               </li>
             </ul>
@@ -98,12 +78,12 @@ const Footer = () => {
             <div className="mt-8">
               <h4 className="font-medium text-gray-300 mb-4">{t('footer.comingSoon')}</h4>
               <div className="download-buttons flex space-x-4">
-                <a href="#" className="flex items-center gap-2 px-4 py-2 border border-gray-600 rounded-lg opacity-50 hover:opacity-75 transition-opacity">
+                <div className="flex items-center gap-2 px-4 py-2 border border-gray-600 rounded-lg opacity-50 cursor-not-allowed">
                   <FontAwesomeIcon icon={faApple} className="text-gray-300 text-lg" />
-                </a>
-                <a href="#" className="flex items-center gap-2 px-4 py-2 border border-gray-600 rounded-lg opacity-50 hover:opacity-75 transition-opacity">
+                </div>
+                <div className="flex items-center gap-2 px-4 py-2 border border-gray-600 rounded-lg opacity-50 cursor-not-allowed">
                   <FontAwesomeIcon icon={faGooglePlay} className="text-gray-300 text-lg" />
-                </a>
+                </div>
               </div>
             </div>
           </div>

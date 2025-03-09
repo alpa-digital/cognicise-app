@@ -125,14 +125,16 @@
       "web": "Web"
     },
     "footer": {
-      "description": "Transforming cognitive care through innovative technology and family connection.",
-      "quickLinks": "Quick Links",
+      "description": "Neurocognitive monitoring platform with predictive analysis for healthcare professionals. Improves early diagnosis and treatment of cognitive disorders.",
+      "quickLinks": "Quick links",
       "whatIs": "What is Cognicise?",
       "features": "Features",
       "faq": "FAQ",
-      "joinWaitlist": "Join the waitlist",
-      "quickContact": "Quick Contact",
-      "comingSoon": "Coming soon on:",
+      "joinWaitlist": "Join waitlist",
+      "terms": "Terms and conditions",
+      "privacy": "Privacy policy",
+      "quickContact": "Contact",
+      "comingSoon": "Coming soon",
       "rights": "All rights reserved."
     },
     "waitlistModal": {
